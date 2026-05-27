@@ -1,0 +1,119 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y CONFIGURACIÓN (Multiverso Friki)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121214;
+    color: #ffffff;
+    padding-top: 80px; /* Espacio para que el menú fijo no tape el contenido */
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   HEADER Y BARRA DE NAVEGACIÓN (OBLIGATORIO: FIJA EN EL TOP)
+   ========================================================================== */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #1a1a1e;
+    border-bottom: 2px solid #7b2cbf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 1000; /* Asegura que quede siempre por encima de todo */
+}
+
+.logo h1 {
+    font-size: 24px;
+    color: #7b2cbf;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #fff;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: #c4c4c4;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    color: #7b2cbf;
+}
+
+/* Clase obligatoria para resaltar la página actual del menú */
+nav ul li a.activo {
+    color: #fff;
+    background-color: #7b2cbf;
+}
+
+/* ==========================================================================
+   FOOTER (OBLIGATORIO: REDES, DIRECCIÓN Y AVISO LEGAL)
+   ========================================================================== */
+footer {
+    background-color: #1a1a1e;
+    border-top: 1px solid #2a2a30;
+    padding: 30px 5%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-info p {
+    color: #c4c4c4;
+    font-size: 14px;
+}
+
+.footer-redes {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-redes a {
+    color: #7b2cbf;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: transform 0.2s;
+}
+
+.footer-redes a:hover {
+    transform: scale(1.1);
+    color: #fff;
+}
+
+.footer-legal a {
+    color: #666;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.footer-legal a:hover {
+    text-decoration: underline;
+}
