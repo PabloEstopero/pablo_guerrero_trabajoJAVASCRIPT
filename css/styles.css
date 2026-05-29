@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ESTILOS GENERALES Y CONFIGURACIÓN (Multiverso Friki)
+   ESTILOS GENERALES Y CONFIGURACIÓN (FriKon)
    ========================================================================== */
 * {
     margin: 0;
@@ -11,12 +11,13 @@
 body {
     background-color: #121214;
     color: #ffffff;
-    padding-top: 80px; /* Espacio para que el menú fijo no tape el contenido */
+    padding-top: 80px;
+    /* Espacio para que el menú fijo no tape el contenido */
     line-height: 1.6;
 }
 
 /* ==========================================================================
-   HEADER Y BARRA DE NAVEGACIÓN (OBLIGATORIO: FIJA EN EL TOP)
+   HEADER Y BARRA DE NAVEGACIÓN 
    ========================================================================== */
 header {
     position: fixed;
@@ -30,7 +31,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    z-index: 1000; /* Asegura que quede siempre por encima de todo */
+    z-index: 1000;
+    /* Asegura que quede siempre por encima de todo */
 }
 
 .logo h1 {
@@ -71,7 +73,7 @@ nav ul li a.activo {
 }
 
 /* ==========================================================================
-   FOOTER (OBLIGATORIO: REDES, DIRECCIÓN Y AVISO LEGAL)
+   FOOTER (REDES, DIRECCIÓN Y AVISO LEGAL)
    ========================================================================== */
 footer {
     background-color: #1a1a1e;
@@ -117,3 +119,123 @@ footer {
 .footer-legal a:hover {
     text-decoration: underline;
 }
+
+
+/* ==========================================================================
+  GALERIA Y CARRUSEL
+   ========================================================================== */
+
+/* Título de la sección */
+.titulo-seleccion {
+    font-size: 28px;
+    color: #7b2cbf;
+    text-align: center;
+    margin: 40px 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* El contenedor que centra el carrusel al 90% de la pantalla */
+.carrusel-contenedor {
+    position: relative;
+    width: 65%;
+    max-width: 1400px;
+    /* Evita que se deforme en pantallas enormes */
+    height: 380px;
+    /* Altura fija para lograr el efecto banner panorámico */
+    margin: 0 auto;
+    /* Centrado horizontal perfecto */
+    border-radius: 12px;
+    overflow: hidden;
+    /* Oculta las imágenes que están en cola */
+    border: 2px solid #2a2a30;
+    background-color: #1a1a1e;
+    /* Fondo de carga mientras aparecen las fotos */
+}
+
+/* Reglas para las diapositivas */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    /* Por defecto ocultas */
+    transition: opacity 0.6s ease-in-out;
+    /* Transición suave de fundido */
+    z-index: 1;
+}
+
+/* Estado de la diapositiva que se está mostrando */
+.slide.activa {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* Ajuste forzado de tus imágenes para que no se deformen */
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Adapta y recorta la foto manteniendo su proporción */
+    object-position: center;
+    /* Enfoca el centro de la imagen al recortar */
+}
+
+/* Sombreado inferior y textos del banner */
+.carrusel-texto {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    /* Degradado para legibilidad */
+    padding: 35px 5%;
+    z-index: 3;
+}
+
+.carrusel-texto h3 {
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.carrusel-texto p {
+    color: #c4c4c4;
+    font-size: 16px;
+}
+
+/* Diseño de los botones de las flechas */
+.flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Centrado vertical matemático */
+    background-color: rgba(26, 26, 30, 0.8);
+    color: #fff;
+    border: 1px solid #7b2cbf;
+    font-size: 24px;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.flecha:hover {
+    background-color: #7b2cbf;
+    transform: translateY(-50%) scale(1.1);
+    /* Mantiene el centrado y aumenta tamaño */
+}
+
+.flecha.prev {
+    left: 25px;
+}
+
+/* Posición flecha izquierda */
+.flecha.next {
+    right: 25px;
+}
+
+/* Posición flecha derecha */
