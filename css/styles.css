@@ -152,6 +152,13 @@ footer {
     background-color: #1a1a1e;
     /* Fondo de carga mientras aparecen las fotos */
 }
+/* El contenedor del grupo de fotos ocupa todo el espacio disponible */
+.carrusel-slides{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
 
 /* Reglas para las diapositivas */
 .slide {
@@ -206,36 +213,81 @@ footer {
     font-size: 16px;
 }
 
-/* Diseño de los botones de las flechas */
-.flecha {
+/* ==========================================================================
+   CONTROLES CIRCULARES
+   ========================================================================== */
+
+/* Contenedor abajo a la derecha */
+.carrusel-dots {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    /* Centrado vertical matemático */
-    background-color: rgba(26, 26, 30, 0.8);
-    color: #fff;
-    border: 1px solid #7b2cbf;
-    font-size: 24px;
-    padding: 12px 18px;
-    cursor: pointer;
-    border-radius: 50%;
+    bottom: 25px;
+    right: 5%;
+    display: flex;
+    gap: 15px;
     z-index: 10;
-    transition: all 0.3s ease;
 }
 
-.flecha:hover {
-    background-color: #7b2cbf;
-    transform: translateY(-50%) scale(1.1);
-    /* Mantiene el centrado y aumenta tamaño */
+/* Envoltorio de cada círculo */
+.dot-wrapper {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.flecha.prev {
-    left: 25px;
+/* El número del centro */
+.dot-numero {
+    display: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: #c4c4c4;
+    position: absolute;
+    z-index: 2;
+    transition: color 0.3s ease;
 }
 
-/* Posición flecha izquierda */
-.flecha.next {
-    right: 25px;
+/* El círculo SVG */
+.progreso-circular {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg); /* Para que la carga empiece arriba del todo */
 }
 
-/* Posición flecha derecha */
+/* Círculo gris de fondo */
+.circulo-fondo {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 2.5;
+}
+
+/* La barra de carga que se moverá */
+.circulo-barra {
+    fill: none;
+    stroke: #ffffff; /* El morado FriKon */
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 100, 100;
+    stroke-dashoffset: 100; /* Completamente vacía al inicio */
+}
+
+/* ESTADOS ACTIVOS: Cuando la foto está seleccionada */
+.dot-wrapper.activo .dot-numero {
+    color: #fff; /* Número blanco */
+}
+
+/* Animación de la barra de carga (solo se activa en el dot que tenga la clase 'activo') */
+.dot-wrapper.activo .circulo-barra {
+    animation: cargaCircular 5s linear forwards;
+}
+
+@keyframes cargaCircular {
+    from {
+        stroke-dashoffset: 100; /* Vacío */
+    }
+    to {
+        stroke-dashoffset: 0;   /* Lleno al 100% */
+    }
+}
