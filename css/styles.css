@@ -11,8 +11,7 @@
 body {
     background-color: #121214;
     color: #ffffff;
-    padding-top: 80px;
-    /* Espacio para que el menú fijo no tape el contenido */
+    padding-top: 80px; /* Espacio para que el menú fijo no tape el contenido */
     line-height: 1.6;
 }
 
@@ -31,19 +30,20 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    z-index: 1000;
-    /* Asegura que quede siempre por encima de todo */
+    z-index: 1000; /* Asegura que quede siempre por encima de todo */
 }
 
-.logo h1 {
+.logo-texto {
     font-size: 24px;
-    color: #7b2cbf;
+    color: #7b2cbf; /* Color morado base para "Fri" */
     font-weight: bold;
     letter-spacing: 1px;
+    display: inline-block; /* Para que se comporte bien el tamaño */
 }
 
-.logo span {
-    color: #fff;
+.logo-texto span {
+    font-size: 24px;
+    color: #fff; /* Color blanco para "Kon." */
 }
 
 nav ul {
@@ -102,7 +102,7 @@ footer {
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, color 0.2s;
 }
 
 .footer-redes a:hover {
@@ -120,12 +120,154 @@ footer {
     text-decoration: underline;
 }
 
+/* ==========================================================================
+   MAQUETACIÓN DE LA PORTADA (INDEX) - NUEVAS SECCIONES
+   ========================================================================== */
+.main-portada {
+    padding: 0;
+}
+
+.seccion-portada {
+    padding: 60px 5%;
+}
+
+.titulo-portada {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Sección 1: Hero */
+#hero-inicio {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('../images/productos-carrusel/fabula-sombria-portada-noticia.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-contenido h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.hero-contenido p {
+    font-size: 1.2rem;
+    color: #c4c4c4;
+    margin-bottom: 30px;
+}
+
+.btn-hero {
+    background-color: #7b2cbf;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-hero:hover {
+    background-color: #9d4edd;
+}
+
+/* Sección 2: Tus Accesos Directos */
+.grid-accesos-directos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.bloque-acceso {
+    position: relative;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    border: 1px solid #2d2d2d;
+}
+
+.bloque-acceso img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.acceso-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 15, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.bloque-acceso h3 {
+    color: #fff;
+    font-size: 1.4rem;
+    background-color: rgba(123, 44, 191, 0.9);
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.bloque-acceso:hover img {
+    transform: scale(1.1);
+}
+
+.bloque-acceso:hover .acceso-overlay {
+    background: rgba(123, 44, 191, 0.2);
+}
+
+/* Sección 3: Grid de Ventajas */
+.grid-ventajas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.ventaja-card {
+    background-color: #1a1a1e;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #2a2a30;
+}
+
+.ventaja-icono {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Sección 4: Ajax Noticias */
+.grid-noticias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.cargando {
+    text-align: center;
+    color: #666;
+    grid-column: 1 / -1;
+}
 
 /* ==========================================================================
    CARRUSEL GALERIA
    ========================================================================== */
-
-/* Título de la sección */
 .titulo-seleccion {
     font-size: 28px;
     color: #7b2cbf;
@@ -135,32 +277,24 @@ footer {
     letter-spacing: 1px;
 }
 
-/* El contenedor que centra el carrusel al 90% de la pantalla */
 .carrusel-contenedor {
     position: relative;
     width: 65%;
     max-width: 1400px;
-    /* Evita que se deforme en pantallas enormes */
     height: 380px;
-    /* Altura fija para lograr el efecto banner panorámico */
     margin: 0 auto;
-    /* Centrado horizontal perfecto */
     border-radius: 12px;
     overflow: hidden;
-    /* Oculta las imágenes que están en cola */
     border: 2px solid #2a2a30;
     background-color: #1a1a1e;
-    /* Fondo de carga mientras aparecen las fotos */
 }
-/* El contenedor del grupo de fotos ocupa todo el espacio disponible */
-.carrusel-slides{
+
+.carrusel-slides {
     position: relative;
     width: 100%;
     height: 100%;
-
 }
 
-/* Reglas para las diapositivas */
 .slide {
     position: absolute;
     top: 0;
@@ -168,36 +302,28 @@ footer {
     width: 100%;
     height: 100%;
     opacity: 0;
-    /* Por defecto ocultas */
     transition: opacity 0.6s ease-in-out;
-    /* Transición suave de fundido */
     z-index: 1;
 }
 
-/* Estado de la diapositiva que se está mostrando */
 .slide.activa {
     opacity: 1;
     z-index: 2;
 }
 
-/* Ajuste forzado de tus imágenes para que no se deformen */
 .slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Adapta y recorta la foto manteniendo su proporción */
     object-position: center;
-    /* Enfoca el centro de la imagen al recortar */
 }
 
-/* Sombreado inferior y textos del banner */
 .carrusel-texto {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    /* Degradado para legibilidad */
     padding: 35px 5%;
     z-index: 3;
 }
@@ -216,8 +342,6 @@ footer {
 /* ==========================================================================
    CONTROLES CIRCULARES CARRUSEL
    ========================================================================== */
-
-/* Contenedor abajo a la derecha */
 .carrusel-dots {
     position: absolute;
     bottom: 25px;
@@ -227,7 +351,6 @@ footer {
     z-index: 10;
 }
 
-/* Envoltorio de cada círculo */
 .dot-wrapper {
     position: relative;
     width: 10px;
@@ -238,7 +361,6 @@ footer {
     cursor: pointer;
 }
 
-/* El número del centro */
 .dot-numero {
     display: none;
     font-size: 13px;
@@ -249,54 +371,43 @@ footer {
     transition: color 0.3s ease;
 }
 
-/* El círculo SVG */
 .progreso-circular {
     width: 100%;
     height: 100%;
-    transform: rotate(-90deg); /* Para que la carga empiece arriba del todo */
+    transform: rotate(-90deg);
 }
 
-/* Círculo gris de fondo */
 .circulo-fondo {
     fill: none;
     stroke: rgba(255, 255, 255, 0.2);
     stroke-width: 2.5;
 }
 
-/* La barra de carga que se moverá */
 .circulo-barra {
     fill: none;
-    stroke: #ffffff; /* El morado FriKon */
+    stroke: #ffffff;
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-dasharray: 100, 100;
-    stroke-dashoffset: 100; /* Completamente vacía al inicio */
+    stroke-dashoffset: 100;
 }
 
-/* ESTADOS ACTIVOS: Cuando la foto está seleccionada */
 .dot-wrapper.activo .dot-numero {
-    color: #fff; /* Número blanco */
+    color: #fff;
 }
 
-/* Animación de la barra de carga (solo se activa en el dot que tenga la clase 'activo') */
 .dot-wrapper.activo .circulo-barra {
     animation: cargaCircular 5s linear forwards;
 }
 
 @keyframes cargaCircular {
-    from {
-        stroke-dashoffset: 100; /* Vacío */
-    }
-    to {
-        stroke-dashoffset: 0;   /* Lleno al 100% */
-    }
+    from { stroke-dashoffset: 100; }
+    to { stroke-dashoffset: 0; }
 }
 
 /* ==========================================================================
    CATALOGO DE PRODUCTOS GALERIA
    ========================================================================== */
-
-/* Contenedor de cada categoría */
 .categoria-seccion {
     margin-bottom: 50px;
     padding: 0 5%;
@@ -306,19 +417,17 @@ footer {
     font-size: 1.6rem;
     color: #fff;
     margin-bottom: 20px;
-    border-bottom: 2px solid #7b2cbf; /* Línea morada FriKon debajo del título */
+    border-bottom: 2px solid #7b2cbf;
     padding-bottom: 8px;
 }
 
-/* Malla de productos  */
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    align-items: start; /*Hace que cada tarjeta mida solo lo que mide su contenido actual */
+    align-items: start;
 }
 
-/* La tarjeta del producto  */
 .producto-card {
     background-color: #1a1a1a;
     border-radius: 8px;
@@ -328,11 +437,10 @@ footer {
 }
 
 .producto-card:hover {
-    transform: translateY(-5px); /* Pequeño salto hacia arriba al pasar el ratón */
+    transform: translateY(-5px);
     border-color: #7b2cbf;
 }
 
-/* Contenedor de la foto para controlar el texto flotante */
 .producto-imagen-wrapper {
     position: relative;
     width: 100%;
@@ -349,31 +457,28 @@ footer {
 }
 
 .producto-card:hover .producto-imagen-wrapper img {
-    transform: scale(1.05); /* Zoom suave a la foto al pasar el ratón */
+    transform: scale(1.05);
 }
 
-/* Mensaje flotante que aparece al hacer HOVER */
 .indicador-click {
     position: absolute;
-    bottom: -50px; /* Empezamos fuera de la caja, escondido abajo */
+    bottom: -50px;
     left: 0;
     width: 100%;
-    background: rgba(123, 44, 191, 0.85); /* Fondo morado FriKon con transparencia */
+    background: rgba(123, 44, 191, 0.85);
     color: #fff;
     text-align: center;
     padding: 12px 0;
     font-size: 0.9rem;
     font-weight: bold;
-    transition: bottom 0.3s ease; /* Transición para el efecto de subida */
+    transition: bottom 0.3s ease;
     z-index: 2;
 }
 
-/* Al pasar el ratón por la tarjeta, el mensaje sube a su sitio */
 .producto-card:hover .indicador-click {
     bottom: 0;
 }
 
-/* Info básica debajo de la foto */
 .producto-resumen {
     padding: 15px;
     text-align: center;
@@ -385,9 +490,8 @@ footer {
     margin: 0;
 }
 
-/*Caja de detalles que empezará oculta */
 .producto-desplegable {
-    display: none; /* JS se encargará de cambiar esto */
+    display: none;
     padding: 0 15px 15px 15px;
     background-color: #141414;
     border-top: 1px solid #2d2d2d;
@@ -396,7 +500,7 @@ footer {
 
 .producto-desplegable .precio {
     font-size: 1.3rem;
-    color: #9d4edd; /* Morado más brillante para el precio */
+    color: #9d4edd;
     font-weight: bold;
     margin: 10px 0;
 }
@@ -408,7 +512,6 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Botón de acción dentro del desplegable */
 .btn-reserva {
     background-color: #7b2cbf;
     color: #fff;
@@ -428,22 +531,19 @@ footer {
    ESTILOS RESPONSIVE PARA EL CARRUSEL (Móviles y Tablets)
    ========================================================================== */
 @media screen and (max-width: 768px) {
-    
-    /* El contenedor ahora ocupa todo el ancho del móvil */
     .carrusel-contenedor {
         width: 90%;
-        height: 320px; /* Bajamos un poco la altura para que no coma tanta pantalla */
-        border-radius: 0; /* Quitamos bordes redondeados en móvil para que quede limpio de borde a borde */
+        height: 320px;
+        border-radius: 0;
     }
 
-    /* Ajustamos el texto para que no tape toda la foto */
     .carrusel-texto {
         padding: 15px;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 40%, rgba(0, 0, 0, 0));
     }
 
     .carrusel-texto h3 {
-        font-size: 1.2rem; /* Texto un pelo más pequeño */
+        font-size: 1.2rem;
         margin-bottom: 4px;
     }
 
@@ -451,10 +551,10 @@ footer {
         font-size: 0.9rem;
     }
 
-    /* Movemos los círculos un poco para que no se peguen tanto al borde inferior */
     .carrusel-dots {
         bottom: 15px;
         right: 15px;
-        gap: 10px; /* Un pelín más juntos */
+        gap: 10px;
     }
 }
+

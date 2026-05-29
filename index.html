@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FriKon | Tienda TCG & Merchandising</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
 
     <header>
         <div class="logo">
-            <h1>Fri<span>Kon</span></h1>
+            <span class="logo-texto">FriKon</span><span>.</span>
         </div>
         <nav>
             <ul>
@@ -24,8 +25,71 @@
         </nav>
     </header>
 
-    <main>
-        
+    <main class="main-portada">
+
+        <section id="hero-inicio" class="seccion-portada">
+            <div class="hero-contenido">
+                <h1>Bienvenidos al universo FriKon</h1>
+                <p>Tu rincón oficial para cartas coleccionables, figuras exclusivas y la mejor protección.</p>
+                <a href="views/galeria.html" class="btn-hero">Explorar Catálogo</a>
+            </div>
+        </section>
+
+        <section id="categorias-destacadas" class="seccion-portada">
+            <h2 class="titulo-portada">¿Qué estás buscando?</h2>
+            <div class="grid-accesos-directos">
+
+                <a href="views/galeria.html#cat-cartas" class="bloque-acceso">
+                    <img src="images/productos-carrusel/fabula-sombria-portada-noticia.jpg" alt="Cartas Coleccionables TCG">
+                    <div class="acceso-overlay">
+                        <h3>Cartas Coleccionables</h3>
+                    </div>
+                </a>
+
+                <a href="views/galeria.html#cat-figuras" class="bloque-acceso">
+                    <img src="images/productos-carrusel/figura_one_piece.webp" alt="Figuras de Colección de Anime">
+                    <div class="acceso-overlay">
+                        <h3>Figuras de Colección</h3>
+                    </div>
+                </a>
+
+                <a href="views/galeria.html#cat-accesorios" class="bloque-acceso">
+                    <img src="images/productos-carrusel/nuevos_albumes.png" alt="Accesorios y Carpetas Protectoras">
+                    <div class="acceso-overlay">
+                        <h3>Accesorios</h3>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="ventajas-frikon" class="seccion-portada">
+            <h2 class="titulo-portada">Por qué elegir FriKon</h2>
+            <div class="grid-ventajas">
+                <div class="ventaja-card">
+                    <div class="ventaja-icono">🛡️</div>
+                    <h3>Envíos Blindados</h3>
+                    <p>Sabemos lo que vale el "Mint Condition". Protegemos tus cartas y cajas con triple burbuja.</p>
+                </div>
+                <div class="ventaja-card">
+                    <div class="ventaja-icono">✨</div>
+                    <h3>100% Oficial</h3>
+                    <p>Cero imitaciones. Solo trabajamos con distribuidores oficiales de Bandai, Pokémon y TCG.</p>
+                </div>
+                <div class="ventaja-card">
+                    <div class="ventaja-icono">👥</div>
+                    <h3>Comunidad Activa</h3>
+                    <p>Únete a nuestros torneos locales y comparte tu pasión con otros coleccionistas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="noticias-comunidad" class="seccion-portada">
+            <h2 class="titulo-portada">Últimas Novedades</h2>
+            <div id="contenedor-noticias-ajax" class="grid-noticias">
+                <p class="cargando">Cargando novedades del servidor...</p>
+            </div>
+        </section>
 
     </main>
 
@@ -35,16 +99,15 @@
             <p>Av. del Entretenimiento, Local 42 - Málaga</p>
         </div>
         <div class="footer-redes">
-            <a href="#" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Twitter/X</a>
-            <a href="#" target="_blank">Discord</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">Twitter/X</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">Discord</a>
         </div>
         <div class="footer-legal">
             <a href="#">Aviso Legal y Política de Privacidad</a>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
