@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "titulo": "¡Gran Torneo de Pokémon TCG este sábado!",
+        "fecha": "29 de Mayo, 2026",
+        "descripcion": "Prepara tu mejor baraja en formato Estándar. Tendremos sobres de recompensa de la nueva expansión 'Fábula Sombría' para el Top 8 y sorteos exclusivos entre todos los participantes.",
+        "categoria": "Eventos"
+    },
+    {
+        "id": 2,
+        "titulo": "Preventas abiertas: Nueva oleada de Figuras Bandai",
+        "fecha": "25 de Mayo, 2026",
+        "descripcion": "Ya puedes reservar las próximas figuras articuladas de la línea Anime Heroes. Unidades muy limitadas directamente importadas de Japón. ¡No te quedes sin la tuya!",
+        "categoria": "Lanzamientos"
+    },
+    {
+        "id": 3,
+        "titulo": "Consejos FriKon: Cómo proteger tus cartas valiosas",
+        "fecha": "18 de Mayo, 2026",
+        "descripcion": "Analizamos las diferencias entre fundas Perfect Size, fundas Matte y el uso de Toploaders. Aprende a mantener el estado Mint de tus cartas y a evitar el molesto desgaste.",
+        "categoria": "Comunidad"
+    }
+]

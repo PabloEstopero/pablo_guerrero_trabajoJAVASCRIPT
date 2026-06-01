@@ -1,6 +1,11 @@
 /* ==========================================================================
    ESTILOS GENERALES Y CONFIGURACIÓN (FriKon)
    ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    /* Hace que el salto al anclaje vaya deslizándose suavemente */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +16,8 @@
 body {
     background-color: #121214;
     color: #ffffff;
-    padding-top: 80px; /* Espacio para que el menú fijo no tape el contenido */
+    padding-top: 80px;
+    /* Espacio para que el menú fijo no tape el contenido */
     line-height: 1.6;
 }
 
@@ -30,20 +36,24 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    z-index: 1000; /* Asegura que quede siempre por encima de todo */
+    z-index: 1000;
+    /* Asegura que quede siempre por encima de todo */
 }
 
 .logo-texto {
     font-size: 24px;
-    color: #7b2cbf; /* Color morado base para "Fri" */
+    color: #7b2cbf;
+    /* Color morado base para "Fri" */
     font-weight: bold;
     letter-spacing: 1px;
-    display: inline-block; /* Para que se comporte bien el tamaño */
+    display: inline-block;
+    /* Para que se comporte bien el tamaño */
 }
 
 .logo-texto span {
     font-size: 24px;
-    color: #fff; /* Color blanco para "Kon." */
+    color: #fff;
+    /* Color blanco para "Kon." */
 }
 
 nav ul {
@@ -121,7 +131,7 @@ footer {
 }
 
 /* ==========================================================================
-   MAQUETACIÓN DE LA PORTADA (INDEX) - NUEVAS SECCIONES
+   MAQUETACIÓN DE LA PORTADA - NUEVAS SECCIONES
    ========================================================================== */
 .main-portada {
     padding: 0;
@@ -142,7 +152,7 @@ footer {
 
 /* Sección 1: Hero */
 #hero-inicio {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.8)), url('../images/productos-carrusel/fabula-sombria-portada-noticia.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('../images/productos-carrusel/fabula-sombria-portada-noticia.jpg');
     background-size: cover;
     background-position: center;
     height: 70vh;
@@ -256,13 +266,67 @@ footer {
 .grid-noticias {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 25px;
 }
 
-.cargando {
+.noticia-card {
+    background-color: #1a1a1e;
+    border: 1px solid #2a2a30;
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.noticia-card:hover {
+    transform: translateY(-3px);
+    border-color: #7b2cbf;
+    /* Borde morado FriKon al pasar el ratón */
+}
+
+.noticia-tag {
+    display: inline-block;
+    background-color: #7b2cbf;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.noticia-card h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.noticia-card .fecha {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.noticia-card p {
+    font-size: 0.95rem;
+    color: #c4c4c4;
+    line-height: 1.5;
+}
+
+/* Estilos para mensajes de error o carga */
+.cargando,
+.error-carga {
     text-align: center;
     color: #666;
     grid-column: 1 / -1;
+    font-style: italic;
+    padding: 20px 0;
+}
+
+.error-carga {
+    color: #ff4d4d;
 }
 
 /* ==========================================================================
@@ -401,8 +465,13 @@ footer {
 }
 
 @keyframes cargaCircular {
-    from { stroke-dashoffset: 100; }
-    to { stroke-dashoffset: 0; }
+    from {
+        stroke-dashoffset: 100;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 /* ==========================================================================
@@ -411,6 +480,8 @@ footer {
 .categoria-seccion {
     margin-bottom: 50px;
     padding: 0 5%;
+    scroll-margin-top: 100px;
+    /* 80px que mide menú + 20px  para que respire */
 }
 
 .categoria-titulo {
@@ -527,24 +598,33 @@ footer {
     background-color: #9d4edd;
 }
 
+
+
 /* ==========================================================================
-   ADAPTACIONES RESPONSIVE PARA LA PORTADA (INDEX) - DENTRO DEL MEDIA QUERY
+   ESTILOS RESPONSIVE PARA EL CARRUSEL (Móviles y Tablets)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    /* ==========================================================================
+   ADAPTACIONES RESPONSIVE PARA LA PORTADA (INDEX)
    ========================================================================== */
 
     /* 1. Ajustes del Header para que no se solape en móviles */
     header {
         height: auto;
         padding: 15px 5%;
-        flex-direction: column; /* El logo arriba y el menú abajo */
+        flex-direction: column;
+        /* El logo arriba y el menú abajo */
         gap: 10px;
     }
-    
+
     body {
-        padding-top: 110px; /* Un poco más de espacio arriba porque el header ahora mide más en vertical */
+        padding-top: 110px;
+        /* Un poco más de espacio arriba porque el header ahora mide más en vertical */
     }
 
     nav ul {
-        gap: 5px; /* Juntamos un pelo más los enlaces */
+        gap: 5px;
+        /* Juntamos un pelo más los enlaces */
     }
 
     nav ul li a {
@@ -554,11 +634,13 @@ footer {
 
     /* 2. Ajustes del Hero / Bienvenida */
     #hero-inicio {
-        height: 50vh; /* Reducimos la altura en móvil para que no ocupe toda la pantalla */
+        height: 50vh;
+        /* Reducimos la altura en móvil para que no ocupe toda la pantalla */
     }
 
     .hero-contenido h1 {
-        font-size: 1.8rem; /* Tamaño de letra mucho más adaptado a pantallas estrechas */
+        font-size: 1.8rem;
+        /* Tamaño de letra mucho más adaptado a pantallas estrechas */
         padding: 0 10px;
     }
 
@@ -570,12 +652,14 @@ footer {
 
     /* 3. Tus 3 bloques de acceso (Cartas, Figuras, Accesorios) */
     .grid-accesos-directos {
-        grid-template-columns: 1fr; /* Forzamos una sola columna vertical */
+        grid-template-columns: 1fr;
+        /* Forzamos una sola columna vertical */
         gap: 15px;
     }
 
     .bloque-acceso {
-        height: 180px; /* Fotos un poco menos altas en móvil para que sea cómodo hacer scroll */
+        height: 180px;
+        /* Fotos un poco menos altas en móvil para que sea cómodo hacer scroll */
     }
 
     .bloque-acceso h3 {
@@ -585,7 +669,8 @@ footer {
 
     /* 4. Grid de Ventajas FriKon */
     .grid-ventajas {
-        grid-template-columns: 1fr; /* Una sola columna para que las tarjetas respiren */
+        grid-template-columns: 1fr;
+        /* Una sola columna para que las tarjetas respiren */
         gap: 20px;
     }
 
@@ -602,10 +687,9 @@ footer {
         font-size: 1.5rem;
     }
 
-/* ==========================================================================
-   ESTILOS RESPONSIVE PARA EL CARRUSEL (Móviles y Tablets)
+    /* ==========================================================================
+   ADAPTACIONES PARA EL CARRUSEL (GALERIA)
    ========================================================================== */
-@media screen and (max-width: 768px) {
     .carrusel-contenedor {
         width: 90%;
         height: 320px;
@@ -632,4 +716,3 @@ footer {
         gap: 10px;
     }
 }
-
