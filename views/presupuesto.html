@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
+
 <body>
 
     <header>
@@ -16,15 +18,117 @@
         <nav>
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
-                <li><a href="galeria.html" class="activo">Galería</a></li>
-                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="presupuesto.html" class="activo">Presupuesto</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-    
+    <main class="main-presupuesto">
+        <section class="seccion-formulario">
+            <h1 class="titulo-formulario">Calcula tu Presupuesto Personalizado</h1>
+            <p class="subtitulo-formulario">Introduce tus datos y configura tu pedido para obtener un coste estimado.
+            </p>
+
+            <form id="form-presupuesto" novalidate>
+
+                <fieldset>
+                    <legend>👤 Datos de Contacto</legend>
+
+                    <div class="campo-fila">
+                        <div class="campo-input">
+                            <label for="nombre" class="sr-only">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Nombre*" required>
+                            <span class="error-mensaje" id="error-nombre">El nombre debe contener solo letras (máx. 15
+                                caracteres).</span>
+                        </div>
+
+                        <div class="campo-input">
+                            <label for="apellidos" class="sr-only">Apellidos</label>
+                            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos*" required>
+                            <span class="error-mensaje" id="error-apellidos">Los apellidos deben contener solo letras
+                                (máx. 30 caracteres).</span>
+                        </div>
+                    </div>
+
+                    <div class="campo-fila">
+                        <div class="campo-input">
+                            <label for="telefono" class="sr-only">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="Número de teléfono*" required>
+                            <span class="error-mensaje" id="error-telefono">Introduce un número de teléfono válido (9
+                                dígitos).</span>
+                        </div>
+
+                        <div class="campo-input">
+                            <label for="email" class="sr-only">Correo electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="Correo electrónico*" required>
+                            <span class="error-mensaje" id="error-email">Introduce un correo electrónico válido.</span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>📦 Selección de Producto y Envío</legend>
+
+                    <div class="campo-input">
+                        <select id="producto-base" name="producto-base" required>
+                            <option value="" selected disabled>Selecciona el producto:</option>
+                            <option value="85">Caja de Sobres TCG (Booster Box) - 85€</option>
+                            <option value="45.10">Figura de Colección Bandai/Banpresto - 45,10€</option>
+                            <option value="30">Álbum Carpeta Premium Nexus (9-Pocket) - 30€</option>
+                            <option value="120">Pack Coleccionista Elite (Caja + Fundas) - 120€</option>
+                        </select>
+                        <span class="error-mensaje" id="error-producto">Por favor, selecciona un producto del
+                            catálogo.</span>
+                    </div>
+
+                    <div class="campo-input">
+                        <input type="number" id="plazo" name="plazo" min="1" max="30"
+                            placeholder="Plazo de entrega estimado (en días)*" value="7" required>
+                        <small class="ayuda-input">Nota: Los envíos exprés (menos de 3 días) tienen un recargo de
+                            urgencia del 20%.</small>
+                        <span class="error-mensaje" id="error-plazo">Introduce un plazo de entrega válido (entre 1 y 30
+                            días).</span>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>🛡️ Extras de Protección FriKon</legend>
+
+                    <label class="campo-checkbox">
+                        <input type="checkbox" name="extra" value="5" class="check-extra">
+                        <span>Seguro de Envío a Todo Riesgo (+5€)</span>
+                    </label>
+
+                    <label class="campo-checkbox">
+                        <input type="checkbox" name="extra" value="3" class="check-extra">
+                        <span>Pack de Fundas Protectoras Premium (+3€)</span>
+                    </label>
+
+                    <label class="campo-checkbox">
+                        <input type="checkbox" name="extra" value="4" class="check-extra">
+                        <span>Embalaje Especial Regalo Coleccionista (+4€)</span>
+                    </label>
+                </fieldset>
+
+                <div class="contenedor-precio-final">
+                    <h2>Presupuesto Estimado:</h2>
+                    <div class="pantalla-precio"><span id="precio-total">0</span>€</div>
+
+                    <label class="campo-checkbox condiciones-check">
+                        <input type="checkbox" id="condiciones" required>
+                        <span>Acepto las condiciones comerciales y política de reserva.*</span>
+                    </label>
+                    <span class="error-mensaje" id="error-condiciones">Debes aceptar las condiciones para poder
+                        solicitar el presupuesto.</span>
+                </div>
+
+                <div class="contenedor-boton">
+                    <button type="submit" id="btn-enviar" class="btn-submit">Enviar Solicitud</button>
+                </div>
+
+            </form>
+        </section>
     </main>
 
     <footer>
@@ -42,7 +146,8 @@
         </div>
     </footer>
 
-    
+
     <script src="../js/main.js"></script>
 </body>
+
 </html>

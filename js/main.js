@@ -3,15 +3,18 @@
    ========================================================================== */
 
 $(document).ready(function () {
-
-    // --- MÓDULO 1: DETECCIÓN DE PORTADA (AJAX NOTICIAS) ---
+    /* ==========================================================================
+    --- MÓDULO 1: DETECCIÓN DE PORTADA (AJAX NOTICIAS) ---
+   ========================================================================== */
     // Comprobamos si en la página actual existe el contenedor de noticias de la portada
     if ($('#contenedor-noticias-ajax').length > 0) {
         cargarNoticiasEfectoAjax();
     }
 
+    /* ==========================================================================
+        --- MÓDULO 2: CARRUSEL CON JQUERY (GALERÍA) ---
+       ========================================================================== */
 
-    // --- MÓDULO 2: CARRUSEL CON JQUERY (GALERÍA) ---
     const $slides = $('.slide');
     const $dots = $('.dot-wrapper');
 
@@ -71,8 +74,10 @@ $(document).ready(function () {
         iniciarAuto();
     });
 
+    /* ==========================================================================
+        --- MÓDULO 3: DESPLEGABLE INFO PRODUCTOS CON JQUERY (GALERÍA) ---
+       ========================================================================== */
 
-    // --- MÓDULO 3: DESPLEGABLE INFO PRODUCTOS CON JQUERY (GALERÍA) ---
     // detecto el click en la imagen o en el texto resumen del producto
     $('.producto-imagen-wrapper, .producto-resumen').on('click', function () {
         // busco la tarjeta (card) completa del producto en el que he pinchado
@@ -91,51 +96,165 @@ $(document).ready(function () {
         $desplegableActual.slideToggle(300);
     });
 
-});
+    /* ==========================================================================
+       --- MÓDULO 4: VALIDACIÓN DEL PRESUPUESTO  ---
+      ========================================================================== */
+    // 1. Plantillas de Expresiones Regulares (RegExp)
+    const patronLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const patronTelefono = /^\d{9}$/;
+    const patronEmail = /^[A-Za-z-_.+ñÑ\d]+@[A-Za-z-_.+ñÑ\d]{3,}\.[a-zA-Z]{2,}$/;
+
+    // 2. FUNCIÓN DINÁMICA PARA CALCULAR EL PRECIO TOTAL (Disponible globalmente en el ready)
+    function calcularPresupuesto() {
+        let total = 0;
+
+        // 1. Obtener el valor del producto seleccionado
+        let precioProducto = $('#producto-base').val();
+
+        // Si hay un producto seleccionado (no está vacío), lo sumamos convirtiéndolo a número
+        if (precioProducto) {
+            total += parseFloat(precioProducto);
+        }
+
+        // 2. Sumar los Extras (Checkboxes) que estén marcados (.check-extra)
+        $('.check-extra:checked').each(function () {
+            total += parseFloat($(this).val());
+        });
+
+        // 3. Aplicar recargo del 20% si el plazo es menor a 3 días
+        let dias = parseInt($('#plazo').val(), 10);
+        // Si el número es válido y además es menor que 3 (y mayor que 0)
+        if (!isNaN(dias) && dias > 0 && dias < 3) {
+            total = total * 1.20; // Añadimos el 20% de incremento por envío exprés
+        }
+
+        // 4. Inyectar el resultado formateado (sin decimales si es redondo)
+        if (total % 1 === 0) {
+            // Si es un número entero (redondo), lo mostramos sin decimales
+            $('#precio-total').text(total);
+        } else {
+            // Si tiene decimales (como el recargo del 20%), ponemos 2 decimales y cambiamos el punto por coma
+            let totalFormateado = total.toFixed(2).replace('.', ',');
+            $('#precio-total').text(totalFormateado);
+        }
+    }
+
+    // Escuchamos los cambios en los controles para actualizar el precio al instante
+    $('#producto-base').on('change', calcularPresupuesto);
+    $('.check-extra').on('change', calcularPresupuesto);
+    $('#plazo').on('input keyup', calcularPresupuesto);
 
 
-/* ==========================================================================
-    FUNCIONES GLOBALES / PERIFÉRICAS (MÓDULO AJAX)
-   ========================================================================== */
+    // 3. Evento que escucha el envío del formulario
+    $('#form-presupuesto').on('submit', function (evento) {
 
-/**
- * Función que realiza la petición AJAX para traer las noticias del archivo JSON externo
- * (Se define fuera del ready para mantener el código limpio y estructurado)
- */
-function cargarNoticiasEfectoAjax() {
-    $.ajax({
-        url: 'noticias.json', // Ruta del archivo externo en la raíz del proyecto
-        type: 'GET',          // Método HTTP de lectura
-        dataType: 'json',     // Tipo de datos que esperamos procesar
-        success: function(noticiasRecibidas) {
+        // Frenamos la recarga automática del navegador
+        evento.preventDefault();
+
+        // Variable semáforo para saber si dejamos enviar o no
+        let formularioValido = true;
+
+        // --- COMPROBACIÓN DEL NOMBRE ---
+        let valorNombre = $('#nombre').val().trim();
+
+        if (valorNombre === "" || !patronLetras.test(valorNombre) || valorNombre.length > 15) {
+            $('#nombre').addClass('invalido');
+            $('#error-nombre').slideDown(200);
+            formularioValido = false;
+        } else {
+            $('#nombre').removeClass('invalido');
+            $('#error-nombre').slideUp(200);
+        }
+
+        // --- COMPROBACIÓN DE LOS APELLIDOS ---
+        let valorApellidos = $('#apellidos').val().trim();
+
+        if (valorApellidos === "" || !patronLetras.test(valorApellidos) || valorApellidos.length > 30) {
+            $('#apellidos').addClass('invalido');
+            $('#error-apellidos').slideDown(200);
+            formularioValido = false;
+        } else {
+            $('#apellidos').removeClass('invalido');
+            $('#error-apellidos').slideUp(200);
+        }
+
+        // --- COMPROBACIÓN DEL TELÉFONO ---
+        let valorTelefono = $('#telefono').val().trim();
+
+        if (valorTelefono === "" || !patronTelefono.test(valorTelefono)) {
+            $('#telefono').addClass('invalido');
+            $('#error-telefono').slideDown(200);
+            formularioValido = false;
+        } else {
+            $('#telefono').removeClass('invalido');
+            $('#error-telefono').slideUp(200);
+        }
+
+        // --- COMPROBACIÓN DEL EMAIL ---
+        let valorEmail = $('#email').val().trim();
+
+        if (valorEmail === "" || !patronEmail.test(valorEmail)) {
+            $('#email').addClass('invalido');
+            $('#error-email').slideDown(200);
+            formularioValido = false;
+        } else {
+            $('#email').removeClass('invalido');
+            $('#error-email').slideUp(200);
+        }
+
+        // --- COMPROBACIÓN DEL PRODUCTO SELECCIONADO ---
+        let valorProducto = $('#producto-base').val();
+
+        if (valorProducto === null || valorProducto === "") {
+            $('#producto-base').addClass('invalido');
+            $('#error-producto').slideDown(200);
+            formularioValido = false;
+        } else {
+            $('#producto-base').removeClass('invalido');
+            $('#error-producto').slideUp(200);
+        }
+
+        // --- COMPROBACIÓN DEL PLAZO DE ENTREGA ---
+        let valorPlazo = $('#plazo').val().trim();
+        let numeroPlazo = parseInt(valorPlazo, 10);
+
+        if (valorPlazo === "" || isNaN(numeroPlazo) || numeroPlazo < 1 || numeroPlazo > 30) {
+            $('#plazo').addClass('invalido');
+            $('#error-plazo').slideDown(200);
+            formularioValido = false;
+        } else {
+            $('#plazo').removeClass('invalido');
+            $('#error-plazo').slideUp(200);
+        }
+        // --- COMPROBACIÓN DEL CHECKBOX DE CONDICIONES ---
+        // Con .is(':checked') jQuery nos devuelve true si está marcado o false si está vacío
+        let condicionesAceptadas = $('#condiciones').is(':checked');
+
+        if (!condicionesAceptadas) {
+            // Si no está marcado, mostramos el error
+            $('#error-condiciones').slideDown(200);
+            formularioValido = false; // Bloqueamos el envío definitivo
+        } else {
+            // Si está marcado, ocultamos el error si existía
+            $('#error-condiciones').slideUp(200);
+        }
+
+        // --- CONTROL FINAL DEL FORMULARIO ---
+        if (formularioValido) {
+           // Capturamos el precio final que está parpadeando en la pantalla
+            let precioFinal = $('#precio-total').text();
             
-            // 1. Seleccionamos el contenedor de la portada y lo vaciamos (quitamos el texto "Cargando...")
-            var $contenedor = $('#contenedor-noticias-ajax');
-            $contenedor.empty();
-
-            // 2. Recorremos el array de objetos del JSON con el bucle por defecto de jQuery ($.each)
-            $.each(noticiasRecibidas, function(indice, noticia) {
-                
-                // Construimos la estructura HTML inyectando dinámicamente las propiedades del JSON
-                var tarjetaHTML = `
-                    <article class="noticia-card">
-                        <span class="noticia-tag">${noticia.categoria}</span>
-                        <h3>${noticia.titulo}</h3>
-                        <div class="fecha">Publicado el ${noticia.fecha}</div>
-                        <p>${noticia.descripcion}</p>
-                    </article>
-                `;
-
-                // Añadimos de forma consecutiva la tarjeta estructurada al contenedor visual
-                $contenedor.append(tarjetaHTML);
-            });
-
-        },
-        error: function(xhr, status, error) {
-            console.error("Error crítico al leer el archivo noticias.json:", error);
-            $('#contenedor-noticias-ajax').html(
-                '<p class="error-carga">No se han podido cargar las novedades en este momento. Inténtalo más tarde.</p>'
-            );
+            // Mostramos una alerta personalizada con los datos clave
+            alert("¡Solicitud procesada con éxito, " + valorNombre + "!\n\n" +
+                  "Hemos recibido tu petición para el producto seleccionado.\n" +
+                  "Precio estimado: " + precioFinal + "€\n" +
+                  "Plazo de entrega solicitado: " + valorPlazo + " días.\n\n" +
+                  "Nos pondremos en contacto contigo en el correo: " + valorEmail);
+            
+            // Aquí podrías reiniciar el formulario si quisieras con: 
+            // this.reset();
+            // $('#precio-total').text('0');
         }
     });
-}
+
+}); 
