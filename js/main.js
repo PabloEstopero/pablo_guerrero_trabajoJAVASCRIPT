@@ -258,3 +258,36 @@ $(document).ready(function () {
     });
 
 }); 
+
+/* ==========================================================================
+    FUNCIONES GLOBALES / PERIFÉRICAS (MÓDULO 1: AJAX)
+   ========================================================================== */
+function cargarNoticiasEfectoAjax() {
+    $.ajax({
+        url: 'noticias.json', // Si estás en index.html busca la raíz
+        type: 'GET',
+        dataType: 'json',
+        success: function (noticiasRecibidas) {
+            var $contenedor = $('#contenedor-noticias-ajax');
+            $contenedor.empty();
+
+            $.each(noticiasRecibidas, function (indice, noticia) {
+                var tarjetaHTML = `
+                    <article class="noticia-card">
+                        <span class="noticia-tag">${noticia.categoria}</span>
+                        <h3>${noticia.titulo}</h3>
+                        <div class="fecha">Publicado el ${noticia.fecha}</div>
+                        <p>${noticia.descripcion}</p>
+                    </article>
+                `;
+                $contenedor.append(tarjetaHTML);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error crítico al leer el archivo noticias.json:", error);
+            $('#contenedor-noticias-ajax').html(
+                '<p class="error-carga">No se han podido cargar las novedades en este momento. Inténtalo más tarde.</p>'
+            );
+        }
+    });
+}
