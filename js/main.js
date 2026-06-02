@@ -244,8 +244,8 @@ $(document).ready(function () {
                 if ($primerInvalido.attr('id') === 'contenedor-check-productos') {
                     // Buscamos el fieldset que envuelve a este contenedor de productos
                     $elementoDestino = $primerInvalido.closest('fieldset');
-                   
-                    
+
+
                 }
 
                 // 3. Esperamos a que se abra el mensaje de error con el efecto cortina
@@ -282,6 +282,88 @@ $(document).ready(function () {
         // 4. Escondemos todos los mensajes de error
         $('.error-mensaje').slideUp(200);
     });
+
+
+    /* ==========================================================================
+       --- MÓDULO 6: MAPA DINÁMICO Y GEOLOCALIZACIÓN (CONTACTO) ---
+      ========================================================================== */
+    if ($('#mapa-frikon').length > 0) {
+        // Coordenadas fijas de la tienda FriKon (Centro de Málaga como ejemplo)
+        const latTienda = 36.7165;
+        const lngTienda = -4.4305;
+
+        // 1. Inicializamos el mapa centrado en la tienda con un zoom de 15
+        var mapa = L.map('mapa-frikon').setView([latTienda, lngTienda], 15);
+
+        // 2. Cargamos las texturas del mapa desde OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(mapa);
+
+        // 3. Colocamos el chincheto (marcador) de la tienda FriKon
+        var marcadorTienda = L.marker([latTienda, lngTienda]).addTo(mapa)
+            .bindPopup('<b>🚀 ¡Tienda FriKon!</b><br>Av. del Entretenimiento, Local 42.<br>¡Ven a por tus cartas y figuras!')
+            .openPopup();
+
+        // Control para almacenar la ruta activa y poder borrarla si se recalcula
+        var controlRuta = null;
+
+        // 4. Evento al pulsar el botón de calcular ruta
+        $('#btn-calcular-ruta').on('click', function () {
+            var $mensajeGPS = $('#estado-gps');
+            $mensajeGPS.text("Solicitando acceso a tu ubicación... 📍");
+
+            // Comprobamos si el navegador del cliente soporta GPS
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    // CASO ÉXITO: El cliente acepta compartir su posición
+                    function (posicion) {
+                        var latCliente = posicion.coords.latitude;
+                        var lngCliente = posicion.coords.longitude;
+
+                        $mensajeGPS.text("¡Ubicación encontrada! Calculando ruta idónea... 🚗");
+
+                        // Si ya había una ruta pintada de antes, la eliminamos del mapa
+                        if (controlRuta !== null) {
+                            mapa.removeControl(controlRuta);
+                        }
+
+                        // Creamos la ruta desde la posición del cliente hasta la tienda
+                        controlRuta = L.Routing.control({
+                            waypoints: [
+                                L.latLng(latCliente, lngCliente), // Origen: Cliente
+                                L.latLng(latTienda, lngTienda)    // Destino: Tienda FriKon
+                            ],
+                            language: 'es', // Instrucciones en español
+                            routeWhileDragging: false,
+                            createMarker: function (i, waypoint, n) {
+                                // Ponemos un marcador personalizado al cliente y mantenemos el de la tienda
+                                if (i === 0) {
+                                    return L.marker(waypoint.latLng).bindPopup('<b>👤 Tu Ubicación Actual</b>');
+                                } else {
+                                    return L.marker(waypoint.latLng).bindPopup('<b>🏢 Destino: FriKon S.L.</b>');
+                                }
+                            }
+                        }).addTo(mapa);
+
+                        // Ocultamos el marcador flotante inicial de la tienda para que no se duplique
+                        mapa.removeLayer(marcadorTienda);
+
+                        $mensajeGPS.text("Ruta trazada. ¡Te esperamos en la tienda!");
+                    },
+                    // CASO ERROR: El cliente rechaza el GPS o falla la señal
+                    function (error) {
+                        console.error("Error de Geolocalización:", error);
+                        $mensajeGPS.text("❌ No se ha podido obtener tu ubicación. Asegúrate de dar permisos de GPS a tu navegador.");
+                        alert("Para calcular la ruta necesitamos que aceptes el permiso de localización del navegador.");
+                    }
+                );
+            } else {
+                // El navegador es prehistórico y no tiene Geolocation API
+                $mensajeGPS.text("❌ Tu navegador no es compatible con la geolocalización.");
+            }
+        });
+    }
 
 });
 

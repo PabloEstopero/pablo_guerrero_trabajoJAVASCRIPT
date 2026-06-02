@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | FriKon</title>
     <link rel="stylesheet" href="../css/styles.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
 </head>
+
 <body>
 
     <header>
@@ -16,16 +24,51 @@
         <nav>
             <ul>
                 <li><a href="../index.html">Inicio</a></li>
-                <li><a href="galeria.html" >Galería</a></li>
-                <li><a href="presupuesto.html" >Presupuesto</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
                 <li><a href="contacto.html" class="activo">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        
-    
+    <main class="main-contacto">
+        <section class="seccion-contacto-layout">
+
+            <div class="info-empresa-bloque">
+                <h1>📍 Dónde encontrarnos</h1>
+                <p class="subtitulo-contacto">¿Tienes dudas con tu pedido o quieres ver las figuras en persona? ¡Pásate
+                    por nuestra tienda!</p>
+
+                <div class="tarjeta-dato">
+                    <h3>🏢 Dirección Física</h3>
+                    <p>Av. del Entretenimiento, Local 42</p>
+                    <p>29010 - Málaga, España</p>
+                </div>
+
+                <div class="tarjeta-dato">
+                    <h3>📞 Teléfono y Correo</h3>
+                    <p>+34 951 12 34 56</p>
+                    <p>soporte@frikon.com</p>
+                </div>
+
+                <div class="tarjeta-dato">
+                    <h3>⏰ Horario Geek</h3>
+                    <p>Lunes a Sábado: 10:00 - 14:00 y 17:00 - 21:00</p>
+                    <p>Domingos: Cerrado por torneo de TCG</p>
+                </div>
+
+                <button id="btn-calcular-ruta" class="btn-presupuesto btn-enviar-presupuesto"
+                    style="margin-top: 15px; width: 100%;">
+                    🚀 Calcular Ruta desde mi Ubicación
+                </button>
+                <p id="estado-gps" style="font-size: 0.85rem; color: #a2a2a2; margin-top: 8px; text-align: center;"></p>
+            </div>
+
+            <div class="mapa-contenedor-bloque">
+                <div id="mapa-frikon"></div>
+            </div>
+
+        </section>
     </main>
 
     <footer>
@@ -43,9 +86,7 @@
         </div>
     </footer>
 
-    
     <script src="../js/main.js"></script>
 </body>
+
 </html>
-
-
