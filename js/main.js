@@ -97,24 +97,20 @@ $(document).ready(function () {
     });
 
     /* ==========================================================================
-       --- MÓDULO 4: VALIDACIÓN DEL PRESUPUESTO  ---
-      ========================================================================== */
-    // 1. Plantillas de Expresiones Regulares (RegExp)
+           --- MÓDULO 4: VALIDACIÓN Y CÁLCULO DEL PRESUPUESTO ---
+          ========================================================================== */
     const patronLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
     const patronTelefono = /^\d{9}$/;
     const patronEmail = /^[A-Za-z-_.+ñÑ\d]+@[A-Za-z-_.+ñÑ\d]{3,}\.[a-zA-Z]{2,}$/;
 
-    // 2. FUNCIÓN DINÁMICA PARA CALCULAR EL PRECIO TOTAL (Disponible globalmente en el ready)
+    // FUNCIÓN DINÁMICA PARA CALCULAR EL PRECIO TOTAL
     function calcularPresupuesto() {
         let total = 0;
 
-        // 1. Obtener el valor del producto seleccionado
-        let precioProducto = $('#producto-base').val();
-
-        // Si hay un producto seleccionado (no está vacío), lo sumamos convirtiéndolo a número
-        if (precioProducto) {
-            total += parseFloat(precioProducto);
-        }
+        // 1. Sumar TODOS los productos que estén marcados (.check-producto)
+        $('.check-producto:checked').each(function () {
+            total += parseFloat($(this).val());
+        });
 
         // 2. Sumar los Extras (Checkboxes) que estén marcados (.check-extra)
         $('.check-extra:checked').each(function () {
@@ -123,40 +119,32 @@ $(document).ready(function () {
 
         // 3. Aplicar recargo del 20% si el plazo es menor a 3 días
         let dias = parseInt($('#plazo').val(), 10);
-        // Si el número es válido y además es menor que 3 (y mayor que 0)
         if (!isNaN(dias) && dias > 0 && dias < 3) {
-            total = total * 1.20; // Añadimos el 20% de incremento por envío exprés
+            total = total * 1.20;
         }
 
-        // 4. Inyectar el resultado formateado (sin decimales si es redondo)
+        // 4. Inyectar el resultado formateado
         if (total % 1 === 0) {
-            // Si es un número entero (redondo), lo mostramos sin decimales
             $('#precio-total').text(total);
         } else {
-            // Si tiene decimales (como el recargo del 20%), ponemos 2 decimales y cambiamos el punto por coma
             let totalFormateado = total.toFixed(2).replace('.', ',');
             $('#precio-total').text(totalFormateado);
         }
     }
 
     // Escuchamos los cambios en los controles para actualizar el precio al instante
-    $('#producto-base').on('change', calcularPresupuesto);
+    $('.check-producto').on('change', calcularPresupuesto);
     $('.check-extra').on('change', calcularPresupuesto);
     $('#plazo').on('input keyup', calcularPresupuesto);
 
 
-    // 3. Evento que escucha el envío del formulario
+    // EVENTO QUE ESCUCHA EL ENVÍO DEL FORMULARIO
     $('#form-presupuesto').on('submit', function (evento) {
-
-        // Frenamos la recarga automática del navegador
         evento.preventDefault();
-
-        // Variable semáforo para saber si dejamos enviar o no
         let formularioValido = true;
 
         // --- COMPROBACIÓN DEL NOMBRE ---
         let valorNombre = $('#nombre').val().trim();
-
         if (valorNombre === "" || !patronLetras.test(valorNombre) || valorNombre.length > 15) {
             $('#nombre').addClass('invalido');
             $('#error-nombre').slideDown(200);
@@ -168,7 +156,6 @@ $(document).ready(function () {
 
         // --- COMPROBACIÓN DE LOS APELLIDOS ---
         let valorApellidos = $('#apellidos').val().trim();
-
         if (valorApellidos === "" || !patronLetras.test(valorApellidos) || valorApellidos.length > 30) {
             $('#apellidos').addClass('invalido');
             $('#error-apellidos').slideDown(200);
@@ -180,7 +167,6 @@ $(document).ready(function () {
 
         // --- COMPROBACIÓN DEL TELÉFONO ---
         let valorTelefono = $('#telefono').val().trim();
-
         if (valorTelefono === "" || !patronTelefono.test(valorTelefono)) {
             $('#telefono').addClass('invalido');
             $('#error-telefono').slideDown(200);
@@ -192,7 +178,6 @@ $(document).ready(function () {
 
         // --- COMPROBACIÓN DEL EMAIL ---
         let valorEmail = $('#email').val().trim();
-
         if (valorEmail === "" || !patronEmail.test(valorEmail)) {
             $('#email').addClass('invalido');
             $('#error-email').slideDown(200);
@@ -202,22 +187,20 @@ $(document).ready(function () {
             $('#error-email').slideUp(200);
         }
 
-        // --- COMPROBACIÓN DEL PRODUCTO SELECCIONADO ---
-        let valorProducto = $('#producto-base').val();
-
-        if (valorProducto === null || valorProducto === "") {
-            $('#producto-base').addClass('invalido');
+        // --- COMPROBACIÓN DE PRODUCTOS SELECCIONADOS (CHECKBOXES) ---
+        let cantidadProductosMarcados = $('.check-producto:checked').length;
+        if (cantidadProductosMarcados === 0) {
+            $('#contenedor-check-productos').css('border-color', '#ff4d4d').addClass('invalido');
             $('#error-producto').slideDown(200);
             formularioValido = false;
         } else {
-            $('#producto-base').removeClass('invalido');
+            $('#contenedor-check-productos').css('border-color', 'transparent').removeClass('invalido');
             $('#error-producto').slideUp(200);
         }
 
         // --- COMPROBACIÓN DEL PLAZO DE ENTREGA ---
         let valorPlazo = $('#plazo').val().trim();
         let numeroPlazo = parseInt(valorPlazo, 10);
-
         if (valorPlazo === "" || isNaN(numeroPlazo) || numeroPlazo < 1 || numeroPlazo > 30) {
             $('#plazo').addClass('invalido');
             $('#error-plazo').slideDown(200);
@@ -226,38 +209,81 @@ $(document).ready(function () {
             $('#plazo').removeClass('invalido');
             $('#error-plazo').slideUp(200);
         }
-        // --- COMPROBACIÓN DEL CHECKBOX DE CONDICIONES ---
-        // Con .is(':checked') jQuery nos devuelve true si está marcado o false si está vacío
-        let condicionesAceptadas = $('#condiciones').is(':checked');
 
+        // --- COMPROBACIÓN DEL CHECKBOX DE CONDICIONES (PRIVACIDAD) ---
+        let condicionesAceptadas = $('#condiciones').is(':checked');
         if (!condicionesAceptadas) {
-            // Si no está marcado, mostramos el error
-            $('#error-condiciones').slideDown(200);
-            formularioValido = false; // Bloqueamos el envío definitivo
+            $('#condiciones').addClass('invalido'); // Añade borde rojo al check
+            $('#error-condiciones').slideDown(200); // Muestra el mensaje de error
+            formularioValido = false;
         } else {
-            // Si está marcado, ocultamos el error si existía
+            $('#condiciones').removeClass('invalido');
             $('#error-condiciones').slideUp(200);
         }
 
         // --- CONTROL FINAL DEL FORMULARIO ---
         if (formularioValido) {
-           // Capturamos el precio final que está parpadeando en la pantalla
             let precioFinal = $('#precio-total').text();
-            
-            // Mostramos una alerta personalizada con los datos clave
+
             alert("¡Solicitud procesada con éxito, " + valorNombre + "!\n\n" +
-                  "Hemos recibido tu petición para el producto seleccionado.\n" +
-                  "Precio estimado: " + precioFinal + "€\n" +
-                  "Plazo de entrega solicitado: " + valorPlazo + " días.\n\n" +
-                  "Nos pondremos en contacto contigo en el correo: " + valorEmail);
-            
-            // Aquí podrías reiniciar el formulario si quisieras con: 
-            // this.reset();
-            // $('#precio-total').text('0');
+                "Hemos recibido tu petición para los artículos seleccionados.\n" +
+                "Precio estimado total: " + precioFinal + "€\n" +
+                "Plazo de entrega solicitado: " + valorPlazo + " días.\n\n" +
+                "Nos pondremos en contacto contigo en el correo: " + valorEmail);
+
+            $('#btn-resetear').trigger('click');
+        } else {
+            // 1. Buscamos el primer elemento que tenga la clase de error
+            let $primerInvalido = $('.invalido').first();
+
+            if ($primerInvalido.length > 0) {
+                let $elementoDestino = $primerInvalido;
+                let distanciaMargen = 140; // Margen por defecto para los inputs normales
+
+                // 2. CAMBIO CLAVE: Si lo que falla son los productos, apuntamos al legend/fieldset
+                if ($primerInvalido.attr('id') === 'contenedor-check-productos') {
+                    // Buscamos el fieldset que envuelve a este contenedor de productos
+                    $elementoDestino = $primerInvalido.closest('fieldset');
+                   
+                    
+                }
+
+                // 3. Esperamos a que se abra el mensaje de error con el efecto cortina
+                setTimeout(function () {
+                    $('html, body').stop().animate({
+                        scrollTop: $elementoDestino.offset().top - distanciaMargen
+                    }, 800, 'swing', function () {
+                        // 4. Una vez termina el scroll suave, ponemos el foco en el primer check de producto
+                        if ($primerInvalido.attr('id') === 'contenedor-check-productos') {
+                            $('.check-producto').first().focus();
+                        } else {
+                            $primerInvalido.focus();
+                        }
+                    });
+                }, 150);
+            }
         }
     });
 
-}); 
+    /* ==========================================================================
+       --- MÓDULO 5: ACCIÓN DEL BOTÓN RESET PERSONALIZADO ---
+      ========================================================================== */
+    $('#btn-resetear').on('click', function () {
+        // 1. Reseteamos los campos nativos de HTML
+        $('#form-presupuesto')[0].reset();
+
+        // 2. Reiniciamos el precio visual a 0
+        $('#precio-total').text('0');
+
+        // 3. Limpiamos las clases de error de todos los inputs
+        $('input, select, checkbox').removeClass('invalido');
+        $('#contenedor-check-productos').css('border-color', 'transparent').removeClass('invalido');
+
+        // 4. Escondemos todos los mensajes de error
+        $('.error-mensaje').slideUp(200);
+    });
+
+});
 
 /* ==========================================================================
     FUNCIONES GLOBALES / PERIFÉRICAS (MÓDULO 1: AJAX)

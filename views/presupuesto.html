@@ -69,18 +69,37 @@
                 </fieldset>
 
                 <fieldset>
-                    <legend>📦 Selección de Producto y Envío</legend>
+                    <legend>📦 Selección de Productos y Envío</legend>
 
                     <div class="campo-input">
-                        <select id="producto-base" name="producto-base" required>
-                            <option value="" selected disabled>Selecciona el producto:</option>
-                            <option value="85">Caja de Sobres TCG (Booster Box) - 85€</option>
-                            <option value="45.10">Figura de Colección Bandai/Banpresto - 45,10€</option>
-                            <option value="30">Álbum Carpeta Premium Nexus (9-Pocket) - 30€</option>
-                            <option value="120">Pack Coleccionista Elite (Caja + Fundas) - 120€</option>
-                        </select>
-                        <span class="error-mensaje" id="error-producto">Por favor, selecciona un producto del
-                            catálogo.</span>
+                        <label
+                            style="margin-bottom: 12px; color: #fff; font-size: 0.95rem; font-weight: bold;">Selecciona
+                            los productos que deseas incluir en tu presupuesto:</label>
+
+                        <label class="campo-checkbox">
+                            <input type="checkbox" name="producto" value="85" class="check-producto">
+                            <span>Caja de Sobres TCG (Booster Box) — 85€</span>
+                        </label>
+
+                        <label class="campo-checkbox">
+                            <input type="checkbox" name="producto" value="45.10" class="check-producto">
+                            <span>Figura de Colección Bandai/Banpresto — 45,10€</span>
+                        </label>
+
+                        <label class="campo-checkbox">
+                            <input type="checkbox" name="producto" value="30" class="check-producto">
+                            <span>Álbum Carpeta Premium Nexus (9-Pocket) — 30€</span>
+                        </label>
+
+                        <label class="campo-checkbox">
+                            <input type="checkbox" name="producto" value="120" class="check-producto">
+                            <span>Pack Coleccionista Elite (Caja + Fundas) — 120€</span>
+                        </label>
+
+                        <div id="contenedor-check-productos"
+                            style="border: 1px solid transparent; border-radius: 6px; margin-top: 5px;"></div>
+                        <span class="error-mensaje" id="error-producto">Por favor, selecciona al menos un producto para
+                            calcular el presupuesto.</span>
                     </div>
 
                     <div class="campo-input">
@@ -123,10 +142,12 @@
                         solicitar el presupuesto.</span>
                 </div>
 
-                <div class="contenedor-boton">
-                    <button type="submit" id="btn-enviar" class="btn-submit">Enviar Solicitud</button>
+                <div class="botones-formulario-fila">
+                    <button type="submit" id="btn-enviar" class="btn-presupuesto btn-enviar-presupuesto">Enviar
+                        Solicitud</button>
+                    <button type="button" id="btn-resetear" class="btn-presupuesto btn-resetear-presupuesto">Limpiar
+                        Formulario</button>
                 </div>
-
             </form>
         </section>
     </main>

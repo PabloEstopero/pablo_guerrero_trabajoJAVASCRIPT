@@ -794,6 +794,56 @@ select option {
     margin-top: 15px;
     font-size: 0.9rem;
 }
+/* ==========================================================================
+   SECCIÓN SEGUNDA FILA DE BOTONES (PRESUPUESTO)
+   ========================================================================== */
+
+/* Contenedor en fila para alinear ambos botones */
+.botones-formulario-fila {
+    display: flex;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+/* Estilos base compartidos por ambos botones */
+.btn-presupuesto {
+    flex: 1;
+    margin: 0;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+/* Botón de Enviar (Morado Corporativo FriKon) */
+.btn-enviar-presupuesto {
+    background-color: #7b2cbf;
+    border: 2px solid #7b2cbf;
+    color: #ffffff;
+}
+
+/* Efecto al pasar el ratón por encima del botón enviar */
+.btn-enviar-presupuesto:hover {
+    background-color: #9d4edd;
+    border-color: #9d4edd;
+}
+
+/* Botón de Resetear (Elegante con borde blanco/gris para resaltar en fondo oscuro) */
+.btn-resetear-presupuesto {
+    background-color: transparent;
+    border: 2px solid #a2a2a2;
+    color: #ffffff;
+}
+
+/* Efecto al pasar el ratón por encima del botón resetear */
+.btn-resetear-presupuesto:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Un leve reflejo blanco */
+    border-color: #ffffff;
+}
+
 
 
 
@@ -926,5 +976,10 @@ select option {
     .campo-fila {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .botones-formulario-fila {
+        flex-direction: column;
+        gap: 10px;
     }
 }
