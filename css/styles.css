@@ -1,28 +1,51 @@
 /* ==========================================================================
-   ESTILOS GENERALES Y CONFIGURACIÓN (FriKon)
+   CONFIGURACIÓN GENERAL Y VARIABLES
    ========================================================================== */
 html {
     scroll-behavior: smooth;
-    /* Hace que el salto al anclaje vaya deslizándose suavemente */
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+:root {
+    /* Identidad Corporativa */
+    --color-marca: #6c25a3;           
+    --color-marca-hover: #8a3ee6;     
+    
+    /* Capa de Fondos (Diseño Claro) */
+    --bg-principal: #f3eefc;          
+    --bg-tarjeta: #ffffff;            
+    --bg-tarjeta-desplegable: #f9f6fe;
+    --bg-bloque-informativo: #eaddf7; 
+    
+    /* Bordes y Separadores */
+    --border-sutil: #dfcef0;          
+    --border-elemento: #cbb2e5;        
+    --border-foco: #a87ed1;    
+    --border-alerta: #e03131;          
+
+    /* Capa de Texto */
+    --texto-principal: #21152b;       
+    --texto-secundario: #4e3f5c;      
+    --texto-tarjeta: #5c4b6e;      
+    --texto-deshabilitado: #a393b0;   
+    --texto-mutado: #867694;          
 }
 
 body {
-    background-color: #121214;
-    color: #ffffff;
+    background-color: var(--bg-principal);
+    color: var(--texto-principal);
     padding-top: 80px;
-    /* Espacio para que el menú fijo no tape el contenido */
     line-height: 1.6;
 }
 
 /* ==========================================================================
-   HEADER Y BARRA DE NAVEGACIÓN 
+   HEADER Y NAVEGACIÓN
    ========================================================================== */
 header {
     position: fixed;
@@ -30,30 +53,33 @@ header {
     left: 0;
     width: 100%;
     height: 80px;
-    background-color: #1a1a1e;
-    border-bottom: 2px solid #7b2cbf;
+    background-color: var(--bg-tarjeta);
+    border-bottom: 2px solid var(--color-marca);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
     z-index: 1000;
+}
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.logo-img {
+    height: 35px;
+    width: auto;
+    display: block;
 }
 
 .logo-texto {
-    font-size: 24px;
-    color: #7b2cbf;
-    /* Color morado base para "FriKon" */
+    font-size: 35px;
+    color: var(--color-marca);
     font-weight: bold;
     letter-spacing: 1px;
     display: inline-block;
-    /* Para que se comporte bien el tamaño */
-}
-
-.logo-texto span {
-    font-size: 24px;
-    color: #fff;
-    /* Color blanco para "." */
 }
 
 nav ul {
@@ -63,7 +89,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: #c4c4c4;
+    color: var(--texto-secundario);
     text-decoration: none;
     font-weight: 600;
     font-size: 16px;
@@ -73,42 +99,66 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #7b2cbf;
+    color: var(--color-marca);
 }
 
-/* resaltar la página actual del menú */
 nav ul li a.activo {
-    color: #fff;
-    background-color: #7b2cbf;
+    color: var(--bg-tarjeta);
+    background-color: var(--color-marca);
 }
 
 /* ==========================================================================
-   FOOTER (REDES, DIRECCIÓN Y AVISO LEGAL)
+   FOOTER (PIE DE PÁGINA)
    ========================================================================== */
 footer {
-    background-color: #1a1a1e;
-    border-top: 1px solid #2a2a30;
-    padding: 30px 5%;
+    background-color: var(--bg-tarjeta);
+    border-top: 1px solid var(--border-sutil);
+    padding: 40px 5% 20px 5%;
     margin-top: 50px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-contenedor-superior {
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.footer-info p {
-    color: #c4c4c4;
-    font-size: 14px;
+.footer-info,
+.footer-redes {
+    flex: 1;
 }
 
 .footer-redes {
     display: flex;
+    justify-content: flex-end;
     gap: 15px;
 }
 
+.footer-logo-central {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-grande-img {
+    height: 200px;
+    width: auto;
+    display: block;
+}
+
+.footer-info p {
+    color: var(--texto-secundario);
+    font-size: 14px;
+}
+
 .footer-redes a {
-    color: #7b2cbf;
+    color: var(--color-marca);
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
@@ -117,11 +167,18 @@ footer {
 
 .footer-redes a:hover {
     transform: scale(1.1);
-    color: #fff;
+    color: var(--texto-principal);
+}
+
+.footer-legal {
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid var(--border-sutil);
+    padding-top: 15px;
 }
 
 .footer-legal a {
-    color: #666;
+    color: var(--texto-mutado);
     font-size: 12px;
     text-decoration: none;
 }
@@ -131,7 +188,7 @@ footer {
 }
 
 /* ==========================================================================
-   MAQUETACIÓN DE LA PORTADA - NUEVAS SECCIONES
+   PORTADA - SECCIONES GENERALES
    ========================================================================== */
 .main-portada {
     padding: 0;
@@ -144,15 +201,15 @@ footer {
 .titulo-portada {
     text-align: center;
     font-size: 2rem;
-    color: #fff;
+    color: var(--texto-principal);
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Sección 1: Hero */
+/* Hero Principal */
 #hero-inicio {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('../images/productos-carrusel/fabula-sombria-portada-noticia.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.75)), url('../images/index/portada.avif');
     background-size: cover;
     background-position: center;
     height: 70vh;
@@ -164,19 +221,19 @@ footer {
 
 .hero-contenido h1 {
     font-size: 3rem;
-    color: #fff;
+    color: #ffffff;
     margin-bottom: 15px;
 }
 
 .hero-contenido p {
     font-size: 1.2rem;
-    color: #c4c4c4;
+    color: var(--bg-principal);
     margin-bottom: 30px;
 }
 
 .btn-hero {
-    background-color: #7b2cbf;
-    color: #fff;
+    background-color: var(--color-marca);
+    color: #ffffff;
     text-decoration: none;
     padding: 12px 30px;
     border-radius: 25px;
@@ -186,10 +243,10 @@ footer {
 }
 
 .btn-hero:hover {
-    background-color: #9d4edd;
+    background-color: var(--color-marca-hover);
 }
 
-/* Sección 2: Accesos Directos */
+/* Accesos Directos */
 .grid-accesos-directos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -202,7 +259,7 @@ footer {
     border-radius: 8px;
     overflow: hidden;
     display: block;
-    border: 1px solid #2d2d2d;
+    border: 1px solid var(--border-elemento);
 }
 
 .bloque-acceso img {
@@ -226,9 +283,9 @@ footer {
 }
 
 .bloque-acceso h3 {
-    color: #fff;
+    color: #ffffff;
     font-size: 1.4rem;
-    background-color: rgba(123, 44, 191, 0.9);
+    background-color: rgba(108, 37, 163, 0.9); 
     padding: 10px 20px;
     border-radius: 4px;
     transition: background-color 0.3s;
@@ -239,10 +296,10 @@ footer {
 }
 
 .bloque-acceso:hover .acceso-overlay {
-    background: rgba(123, 44, 191, 0.2);
+    background: rgba(108, 37, 163, 0.2);
 }
 
-/* Sección 3: Grid de Ventajas */
+/* Bloque de Ventajas */
 .grid-ventajas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -251,10 +308,10 @@ footer {
 }
 
 .ventaja-card {
-    background-color: #1a1a1e;
+    background-color: var(--bg-tarjeta);
     padding: 30px;
     border-radius: 8px;
-    border: 1px solid #2a2a30;
+    border: 1px solid var(--border-sutil);
 }
 
 .ventaja-icono {
@@ -262,7 +319,7 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Sección 4: Ajax Noticias */
+/* Ajax Noticias */
 .grid-noticias {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -270,8 +327,8 @@ footer {
 }
 
 .noticia-card {
-    background-color: #1a1a1e;
-    border: 1px solid #2a2a30;
+    background-color: var(--bg-tarjeta);
+    border: 1px solid var(--border-sutil);
     padding: 25px;
     border-radius: 8px;
     position: relative;
@@ -280,14 +337,13 @@ footer {
 
 .noticia-card:hover {
     transform: translateY(-3px);
-    border-color: #7b2cbf;
-    /* Borde morado FriKon al pasar el ratón */
+    border-color: var(--color-marca);
 }
 
 .noticia-tag {
     display: inline-block;
-    background-color: #7b2cbf;
-    color: #fff;
+    background-color: var(--color-marca);
+    color: #ffffff;
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -297,7 +353,7 @@ footer {
 }
 
 .noticia-card h3 {
-    color: #fff;
+    color: var(--texto-principal);
     font-size: 1.25rem;
     margin-bottom: 8px;
     line-height: 1.4;
@@ -305,36 +361,35 @@ footer {
 
 .noticia-card .fecha {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--texto-mutado);
     margin-bottom: 15px;
 }
 
 .noticia-card p {
     font-size: 0.95rem;
-    color: #c4c4c4;
+    color: var(--texto-secundario);
     line-height: 1.5;
 }
 
-/* Estilos para mensajes de error o carga */
 .cargando,
 .error-carga {
     text-align: center;
-    color: #666;
+    color: var(--texto-mutado);
     grid-column: 1 / -1;
     font-style: italic;
     padding: 20px 0;
 }
 
 .error-carga {
-    color: #ff4d4d;
+    color: var(--border-alerta);
 }
 
 /* ==========================================================================
-   CARRUSEL GALERIA
+   CARRUSEL GALERÍA
    ========================================================================== */
 .titulo-seleccion {
     font-size: 28px;
-    color: #7b2cbf;
+    color: var(--color-marca);
     text-align: center;
     margin: 40px 0 20px 0;
     text-transform: uppercase;
@@ -349,8 +404,8 @@ footer {
     margin: 0 auto;
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid #2a2a30;
-    background-color: #1a1a1e;
+    border: 2px solid var(--border-sutil);
+    background-color: var(--bg-tarjeta);
 }
 
 .carrusel-slides {
@@ -394,18 +449,16 @@ footer {
 
 .carrusel-texto h2 {
     font-size: 26px;
-    color: #fff;
+    color: #ffffff;
     margin-bottom: 5px;
 }
 
 .carrusel-texto p {
-    color: #c4c4c4;
+    color: var(--bg-principal);
     font-size: 16px;
 }
 
-/* ==========================================================================
-   CONTROLES CIRCULARES CARRUSEL
-   ========================================================================== */
+/* Controles Circulares */
 .carrusel-dots {
     position: absolute;
     bottom: 25px;
@@ -429,7 +482,7 @@ footer {
     display: none;
     font-size: 13px;
     font-weight: bold;
-    color: #c4c4c4;
+    color: var(--texto-secundario);
     position: absolute;
     z-index: 2;
     transition: color 0.3s ease;
@@ -449,7 +502,7 @@ footer {
 
 .circulo-barra {
     fill: none;
-    stroke: #ffffff;
+    stroke: var(--color-marca);
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-dasharray: 100, 100;
@@ -457,7 +510,7 @@ footer {
 }
 
 .dot-wrapper.activo .dot-numero {
-    color: #fff;
+    color: #ffffff;
 }
 
 .dot-wrapper.activo .circulo-barra {
@@ -468,27 +521,25 @@ footer {
     from {
         stroke-dashoffset: 100;
     }
-
     to {
         stroke-dashoffset: 0;
     }
 }
 
 /* ==========================================================================
-   CATALOGO DE PRODUCTOS GALERIA
+   CATÁLOGO DE PRODUCTOS
    ========================================================================== */
 .categoria-seccion {
     margin-bottom: 50px;
     padding: 0 5%;
     scroll-margin-top: 100px;
-    /* 80px que mide menú + 20px  para que respire */
 }
 
 .categoria-titulo {
     font-size: 1.6rem;
-    color: #fff;
+    color: var(--texto-principal);
     margin-bottom: 20px;
-    border-bottom: 2px solid #7b2cbf;
+    border-bottom: 2px solid var(--color-marca);
     padding-bottom: 8px;
 }
 
@@ -500,16 +551,16 @@ footer {
 }
 
 .producto-card {
-    background-color: #1a1a1a;
+    background-color: var(--bg-tarjeta);
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #2d2d2d;
+    border: 1px solid var(--border-elemento);
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .producto-card:hover {
     transform: translateY(-5px);
-    border-color: #7b2cbf;
+    border-color: var(--color-marca);
 }
 
 .producto-imagen-wrapper {
@@ -536,8 +587,8 @@ footer {
     bottom: -50px;
     left: 0;
     width: 100%;
-    background: rgba(123, 44, 191, 0.85);
-    color: #fff;
+    background: rgba(108, 37, 163, 0.85);
+    color: #ffffff;
     text-align: center;
     padding: 12px 0;
     font-size: 0.9rem;
@@ -556,7 +607,7 @@ footer {
 }
 
 .producto-resumen h4 {
-    color: #fff;
+    color: var(--texto-principal);
     font-size: 1.1rem;
     margin: 0;
 }
@@ -564,28 +615,28 @@ footer {
 .producto-desplegable {
     display: none;
     padding: 0 15px 15px 15px;
-    background-color: #141414;
-    border-top: 1px solid #2d2d2d;
+    background-color: var(--bg-tarjeta-desplegable);
+    border-top: 1px solid var(--border-elemento);
     text-align: center;
 }
 
 .producto-desplegable .precio {
     font-size: 1.3rem;
-    color: #9d4edd;
+    color: var(--color-marca);
     font-weight: bold;
     margin: 10px 0;
 }
 
 .producto-desplegable .descripcion {
     font-size: 0.9rem;
-    color: #c4c4c4;
+    color: var(--texto-tarjeta);
     line-height: 1.4;
     margin-bottom: 15px;
 }
 
 .btn-reserva {
-    background-color: #7b2cbf;
-    color: #fff;
+    background-color: var(--color-marca);
+    color: #ffffff;
     border: none;
     padding: 8px 18px;
     border-radius: 4px;
@@ -595,14 +646,12 @@ footer {
 }
 
 .btn-reserva:hover {
-    background-color: #9d4edd;
+    background-color: var(--color-marca-hover);
 }
 
-
 /* ==========================================================================
-   PÁGINA DE PRESUPUESTO 
+   FORMULARIO DE PRESUPUESTO
    ========================================================================== */
-/*-- DATOS DE CONTACTO --*/
 .main-presupuesto {
     padding: 40px 5%;
 }
@@ -610,35 +659,35 @@ footer {
 .seccion-formulario {
     max-width: 800px;
     margin: 0 auto;
-    background-color: #1a1a1e;
-    border: 1px solid #2a2a30;
+    background-color: var(--bg-tarjeta);
+    border: 1px solid var(--border-sutil);
     padding: 40px;
     border-radius: 12px;
 }
 
 .titulo-formulario {
-    color: #7b2cbf;
+    color: var(--color-marca);
     font-size: 1.8rem;
     text-align: center;
     margin-bottom: 10px;
 }
 
 .subtitulo-formulario {
-    color: #c4c4c4;
+    color: var(--texto-secundario);
     text-align: center;
     font-size: 0.95rem;
     margin-bottom: 30px;
 }
 
 fieldset {
-    border: 1px solid #2d2d2d;
+    border: 1px solid var(--border-elemento);
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 25px;
 }
 
 legend {
-    color: #fff;
+    color: var(--texto-principal);
     font-weight: bold;
     padding: 0 10px;
     font-size: 1.1rem;
@@ -655,44 +704,45 @@ legend {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-    /* Un poco de espacio abajo de cada input */
 }
 
 .campo-input label {
-    color: #fff;
+    color: var(--texto-principal);
     font-size: 0.9rem;
     margin-bottom: 8px;
 }
 
-.campo-input input {
-    background-color: #121214;
-    border: 1px solid #3a3a42;
-    color: #fff;
+.campo-input input,
+.campo-input select,
+.campo-input input[type="number"] {
+    background-color: var(--bg-principal);
+    border: 1px solid var(--border-foco);
+    color: var(--texto-principal);
     padding: 12px;
     border-radius: 6px;
     font-size: 0.95rem;
     transition: border-color 0.3s;
+    width: 100%;
 }
 
-.campo-input input:focus {
-    border-color: #7b2cbf;
+.campo-input input:focus,
+.campo-input select:focus,
+.campo-input input[type="number"]:focus {
+    border-color: var(--color-marca);
     outline: none;
 }
 
-/* Estilos para los mensajes de error (ocultos por defecto) */
 .error-mensaje {
-    color: #ff4d4d;
+    color: var(--border-alerta);
     font-size: 0.8rem;
     margin-top: 6px;
     display: none;
 }
 
-/* Clase que añadiremos con JS cuando un campo esté mal */
 input.invalido {
-    border-color: #ff4d4d !important;
+    border-color: var(--border-alerta) !important;
 }
 
-/* Ocultar etiquetas visualmente pero mantenerlas accesibles para W3C y lectores de pantalla */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -704,50 +754,28 @@ input.invalido {
     border: 0;
 }
 
-/*-- SELECCION PRODUCTO Y ENVIO --*/
-.campo-input select,
-.campo-input input[type="number"] {
-    background-color: #121214;
-    border: 1px solid #3a3a42;
-    color: #fff;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    transition: border-color 0.3s;
-    width: 100%;
-}
-
-.campo-input select:focus,
-.campo-input input[type="number"]:focus {
-    border-color: #7b2cbf;
-    outline: none;
-}
-
 .ayuda-input {
-    color: #666;
+    color: var(--texto-mutated);
     font-size: 0.8rem;
     margin-top: 6px;
     margin-bottom: 5px;
 }
 
-/* Estilo para que la opción deshabilitada por defecto se vea grisácea */
 select:invalid,
 select option[disabled] {
-    color: #757575;
+    color: var(--texto-deshabilitado);
 }
 
-/* Para que las opciones de dentro del select se vean con fondo oscuro en todos los navegadores */
 select option {
-    background-color: #1a1a1e;
-    color: #fff;
+    background-color: var(--bg-tarjeta);
+    color: var(--texto-principal);
 }
 
-/* ESTILOS CHECKBOXES */
 .campo-checkbox {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #c4c4c4;
+    color: var(--texto-secundario);
     font-size: 0.95rem;
     margin-bottom: 12px;
     cursor: pointer;
@@ -757,15 +785,13 @@ select option {
 .campo-checkbox input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: #7b2cbf;
-    /* El color morado corporativo para el check */
+    accent-color: var(--color-marca);
     cursor: pointer;
 }
 
-/* Caja contenedora del precio total */
 .contenedor-precio-final {
-    background-color: #121214;
-    border: 2px dashed #7b2cbf;
+    background-color: var(--bg-principal);
+    border: 2px dashed var(--color-marca);
     border-radius: 8px;
     padding: 25px;
     text-align: center;
@@ -774,7 +800,7 @@ select option {
 }
 
 .contenedor-precio-final h2 {
-    color: #fff;
+    color: var(--texto-principal);
     font-size: 1.1rem;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -783,30 +809,23 @@ select option {
 
 .pantalla-precio {
     font-size: 2.8rem;
-    color: #9d4edd;
+    color: var(--color-marca-hover);
     font-weight: bold;
     margin-bottom: 15px;
 }
 
-/* Centrar el checkbox de las condiciones dentro de la caja */
 .condiciones-check {
     justify-content: center;
     margin-top: 15px;
     font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   SECCIÓN SEGUNDA FILA DE BOTONES (PRESUPUESTO)
-   ========================================================================== */
-
-/* Contenedor en fila para alinear ambos botones */
 .botones-formulario-fila {
     display: flex;
     margin-top: 30px;
     gap: 20px;
 }
 
-/* Estilos base compartidos por ambos botones */
 .btn-presupuesto {
     flex: 1;
     margin: 0;
@@ -819,36 +838,30 @@ select option {
     text-align: center;
 }
 
-/* Botón de Enviar (Morado Corporativo FriKon) */
 .btn-enviar-presupuesto {
-    background-color: #7b2cbf;
-    border: 2px solid #7b2cbf;
+    background-color: var(--color-marca);
+    border: 2px solid var(--color-marca);
     color: #ffffff;
 }
 
-/* Efecto al pasar el ratón por encima del botón enviar */
 .btn-enviar-presupuesto:hover {
-    background-color: #9d4edd;
-    border-color: #9d4edd;
+    background-color: var(--color-marca-hover);
+    border-color: var(--color-marca-hover);
 }
 
-/* Botón de Resetear (Elegante con borde blanco/gris para resaltar en fondo oscuro) */
 .btn-resetear-presupuesto {
     background-color: transparent;
-    border: 2px solid #a2a2a2;
-    color: #ffffff;
+    border: 2px solid var(--texto-secundario);
+    color: var(--texto-principal);
 }
 
-/* Efecto al pasar el ratón por encima del botón resetear */
 .btn-resetear-presupuesto:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    /* Un leve reflejo blanco */
-    border-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: var(--texto-principal);
 }
-
 
 /* ==========================================================================
-   PÁGINA DE CONTACTO (LAYOUT Y MAPA)
+   PÁGINA DE CONTACTO Y MAPA
    ========================================================================== */
 .main-contacto {
     padding: 60px 20px;
@@ -860,10 +873,10 @@ select option {
 .seccion-contacto-layout {
     display: flex;
     gap: 40px;
-    background: #1a1a1e;
+    background: var(--bg-tarjeta);
     border-radius: 12px;
     padding: 30px;
-    border: 1px solid #2a2a30;
+    border: 1px solid var(--border-sutil);
 }
 
 .info-empresa-bloque {
@@ -874,39 +887,37 @@ select option {
 }
 
 .subtitulo-contacto {
-    color: #a2a2a2;
+    color: var(--texto-secundario);
     font-size: 0.95rem;
     line-height: 1.5;
 }
 
 .tarjeta-dato {
-    background: #222226;
+    background: var(--bg-bloque-informativo);
     padding: 15px;
     border-radius: 8px;
-    border-left: 4px solid #7b2cbf;
-    /* Detalle morado FriKon */
+    border-left: 4px solid var(--color-marca);
 }
 
 .tarjeta-dato h3 {
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.1rem;
-    color: #fff;
+    color: var(--texto-principal);
 }
 
 .tarjeta-dato p {
     margin: 4px 0;
-    color: #cccccc;
+    color: var(--texto-tarjeta);
     font-size: 0.9rem;
 }
 
-/* Contenedor del Mapa */
 .mapa-contenedor-bloque {
     flex: 1.3;
     min-height: 450px;
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid #2a2a30;
+    border: 2px solid var(--border-sutil);
     position: relative;
 }
 
@@ -914,16 +925,14 @@ select option {
     width: 100%;
     height: 100%;
     z-index: 1;
-    /* Para evitar problemas con el header si tiene fixed */
 }
 
-/* Estilo personalizado para el panel de instrucciones de ruta de Leaflet */
 .leaflet-routing-container {
-    background-color: #222226 !important;
-    color: #fff !important;
+    background-color: var(--bg-bloque-informativo) !important;
+    color: var(--texto-principal) !important;
     padding: 10px !important;
     border-radius: 6px !important;
-    border: 1px solid #444 !important;
+    border: 1px solid var(--border-elemento) !important; 
     font-size: 0.85rem !important;
     max-height: 200px;
     overflow-y: auto;
@@ -931,40 +940,26 @@ select option {
 
 .leaflet-routing-alt h2,
 .leaflet-routing-alt h3 {
-    color: #9d4edd !important;
+    color: var(--color-marca-hover) !important;
 }
 
-
-
-
-
-
-
 /* ==========================================================================
-   ESTILOS RESPONSIVE PARA EL CARRUSEL (Móviles y Tablets)
+   DISEÑO RESPONSIVE (PANTALLAS < 768px)
    ========================================================================== */
 @media screen and (max-width: 768px) {
-    /* ==========================================================================
-   ADAPTACIONES RESPONSIVE PARA LA PORTADA (INDEX)
-   ========================================================================== */
-
-    /* 1. Ajustes del Header para que no se solape en móviles */
     header {
         height: auto;
         padding: 15px 5%;
         flex-direction: column;
-        /* El logo arriba y el menú abajo */
         gap: 10px;
     }
 
     body {
         padding-top: 110px;
-        /* Un poco más de espacio arriba porque el header ahora mide más en vertical */
     }
 
     nav ul {
         gap: 5px;
-        /* Juntamos un pelo más los enlaces */
     }
 
     nav ul li a {
@@ -972,15 +967,12 @@ select option {
         padding: 6px 10px;
     }
 
-    /* 2. Ajustes del Hero / Bienvenida */
     #hero-inicio {
         height: 50vh;
-        /* Reducimos la altura en móvil para que no ocupe toda la pantalla */
     }
 
     .hero-contenido h1 {
         font-size: 1.8rem;
-        /* Tamaño de letra mucho más adaptado a pantallas estrechas */
         padding: 0 10px;
     }
 
@@ -990,16 +982,13 @@ select option {
         padding: 0 15px;
     }
 
-    /* 3. Tus 3 bloques de acceso (Cartas, Figuras, Accesorios) */
     .grid-accesos-directos {
         grid-template-columns: 1fr;
-        /* Forzamos una sola columna vertical */
         gap: 15px;
     }
 
     .bloque-acceso {
         height: 180px;
-        /* Fotos un poco menos altas en móvil para que sea cómodo hacer scroll */
     }
 
     .bloque-acceso h3 {
@@ -1007,10 +996,8 @@ select option {
         padding: 8px 15px;
     }
 
-    /* 4. Grid de Ventajas FriKon */
     .grid-ventajas {
         grid-template-columns: 1fr;
-        /* Una sola columna para que las tarjetas respiren */
         gap: 20px;
     }
 
@@ -1022,14 +1009,10 @@ select option {
         font-size: 2.5rem;
     }
 
-    /* 5. Títulos de las secciones */
     .titulo-portada {
         font-size: 1.5rem;
     }
 
-    /* ==========================================================================
-   ADAPTACIONES PARA EL CARRUSEL (GALERIA)
-   ========================================================================== */
     .carrusel-contenedor {
         width: 90%;
         height: 320px;
@@ -1056,10 +1039,6 @@ select option {
         gap: 10px;
     }
 
-    /* ==========================================================================
-   ADAPTACIONES PARA EL PRESUPUESTO
-   ========================================================================== */
-
     .seccion-formulario {
         padding: 20px;
     }
@@ -1074,11 +1053,6 @@ select option {
         gap: 10px;
     }
 
-    /* ==========================================================================
-   ADAPTACIONES PARA MAPA
-   ========================================================================== */
-
-
     .seccion-contacto-layout {
         flex-direction: column;
     }
@@ -1086,5 +1060,4 @@ select option {
     .mapa-contenedor-bloque {
         min-height: 350px;
     }
-
 }
