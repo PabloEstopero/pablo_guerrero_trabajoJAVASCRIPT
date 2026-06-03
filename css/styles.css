@@ -14,27 +14,27 @@ html {
 
 :root {
     /* Identidad Corporativa */
-    --color-marca: #6c25a3;           
-    --color-marca-hover: #8a3ee6;     
-    
+    --color-marca: #6c25a3;
+    --color-marca-hover: #8a3ee6;
+
     /* Capa de Fondos (Diseño Claro) */
-    --bg-principal: #f3eefc;          
-    --bg-tarjeta: #ffffff;            
+    --bg-principal: #f3eefc;
+    --bg-tarjeta: #ffffff;
     --bg-tarjeta-desplegable: #f9f6fe;
-    --bg-bloque-informativo: #eaddf7; 
-    
+    --bg-bloque-informativo: #eaddf7;
+
     /* Bordes y Separadores */
-    --border-sutil: #dfcef0;          
-    --border-elemento: #cbb2e5;        
-    --border-foco: #a87ed1;    
-    --border-alerta: #e03131;          
+    --border-sutil: #dfcef0;
+    --border-elemento: #cbb2e5;
+    --border-foco: #a87ed1;
+    --border-alerta: #e03131;
 
     /* Capa de Texto */
-    --texto-principal: #21152b;       
-    --texto-secundario: #4e3f5c;      
-    --texto-tarjeta: #5c4b6e;      
-    --texto-deshabilitado: #a393b0;   
-    --texto-mutado: #867694;          
+    --texto-principal: #21152b;
+    --texto-secundario: #4e3f5c;
+    --texto-tarjeta: #5c4b6e;
+    --texto-deshabilitado: #a393b0;
+    --texto-mutado: #867694;
 }
 
 body {
@@ -116,6 +116,7 @@ nav ul li a:hover {
 nav ul li a:hover::after {
     width: 100%;
 }
+
 nav ul li a.activo {
     color: var(--color-marca);
 }
@@ -302,7 +303,7 @@ footer {
 .bloque-acceso h3 {
     color: #ffffff;
     font-size: 1.4rem;
-    background-color: rgba(108, 37, 163, 0.9); 
+    background-color: rgba(108, 37, 163, 0.9);
     padding: 10px 20px;
     border-radius: 4px;
     transition: background-color 0.3s;
@@ -538,6 +539,7 @@ footer {
     from {
         stroke-dashoffset: 100;
     }
+
     to {
         stroke-dashoffset: 0;
     }
@@ -949,7 +951,7 @@ select option {
     color: var(--texto-principal) !important;
     padding: 10px !important;
     border-radius: 6px !important;
-    border: 1px solid var(--border-elemento) !important; 
+    border: 1px solid var(--border-elemento) !important;
     font-size: 0.85rem !important;
     max-height: 200px;
     overflow-y: auto;
@@ -1060,9 +1062,31 @@ select option {
         padding: 20px;
     }
 
+    .seccion-formulario h2,
+    .seccion-formulario legend {
+        text-align: center;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    fieldset {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
     .campo-fila {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .campo-input {
+        margin-bottom: 5px; 
+    }
+
+    .ayuda-input {
+        margin-bottom: 10px; 
     }
 
     .botones-formulario-fila {
@@ -1072,9 +1096,24 @@ select option {
 
     .seccion-contacto-layout {
         flex-direction: column;
+        gap: 20px;
     }
 
     .mapa-contenedor-bloque {
-        min-height: 350px;
+        min-height: 400px;
+        /* Aseguramos altura suficiente en móviles */
+        height: 400px;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+        /* Forzamos a que se ponga por encima para que detecte el dedo */
+    }
+
+    #mapa-frikon {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 }
