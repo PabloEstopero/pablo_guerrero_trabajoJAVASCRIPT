@@ -478,27 +478,83 @@ footer {
 }
 
 /* ==========================================================================
-   CARRUSEL GALERÍA
+   CARRUSEL GALERÍA - EN PANTALLA COMPLETA Y CON COLORES CORPORATIVOS
    ========================================================================== */
-.titulo-seleccion {
-    font-size: 28px;
-    color: var(--color-marca);
+
+   /* Títulos Principales de la Galería con Enfoque Minimalista */
+.titulo-principal-galeria {
+    font-size: 36px;             /* Grande e imponente */
+    font-weight: 800;            /* Grosor máximo */
+    color: var(--texto-principal);/* Color oscuro de tu paleta (#21152b) para que tenga fuerza */
+    text-transform: uppercase;   /* Mayúsculas pro */
+    letter-spacing: 2px;         /* Letras un poco separadas, estilo premium */
     text-align: center;
-    margin: 40px 0 20px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 70px auto 40px auto; /* Mucho espacio arriba y abajo para que respire */
+    position: relative;
+    padding-bottom: 16px;        /* Espacio para la línea decorativa */
+    width: fit-content;          /* Hace que el elemento mida exactamente lo que mide el texto */
+}
+
+/* Una sola línea morada muy fina y elegante justo en el centro */
+.titulo-principal-galeria::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;                 /* Línea cortita, no cruza toda la pantalla */
+    height: 4px;                 /* Grosor sutil */
+    background-color: var(--color-marca); /* Tu morado #6c25a3 */
+    border-radius: 2px;          /* Extremos suavizados */
+}
+
+/* Forzamos a que toda la sección de novedades ocupe el alto de la pantalla */
+#novedades-carrusel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Asegura que entre el header y esta sección se llene el primer pantallazo */
+    height: calc(100vh - 80px); 
+    margin-bottom: 80px; /* Espacio de sobra antes de que empiece el catálogo */
+}
+
+.titulo-seleccion {
+    font-size: 34px;             /* Grande e imponente */
+    font-weight: 800;            /* Grosor máximo para que tenga presencia */
+    color: var(--texto-principal);/* El color oscuro de tu paleta (#21152b) para que mande */
+    text-transform: uppercase;   /* Mayúsculas profesionales */
+    letter-spacing: 2px;         /* Espaciado elegante entre letras */
+    text-align: center;
+    margin: 60px auto 30px auto; /* Espacio equilibrado arriba y abajo */
+    position: relative;
+    padding-bottom: 16px;        /* Hueco para la línea inferior */
+    width: fit-content;          /* Hace que el elemento mida justo lo que ocupa el texto */
+}
+
+/* La barrita morada centrada que evita que el título flote en la nada */
+.titulo-seleccion::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;                 /* Línea cortita y fina */
+    height: 4px;
+    background-color: var(--color-marca); /* Tu morado de FriKon */
+    border-radius: 2px;
 }
 
 .carrusel-contenedor {
     position: relative;
-    width: 65%;
+    width: 85%; /* Más grande para que sea majestuoso */
     max-width: 1400px;
-    height: 380px;
+    height: calc(90vh - 180px); /* Ajuste dinámico de pantalla */
+    min-height: 450px;
     margin: 0 auto;
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid var(--border-sutil);
-    background-color: var(--bg-tarjeta);
+    border: 2px solid var(--border-sutil); /* #dfcef0 */
+    background-color: var(--bg-tarjeta); /* #ffffff */
 }
 
 .carrusel-slides {
@@ -530,25 +586,34 @@ footer {
     object-position: center;
 }
 
+/* Enunciados y textos pro sobre el carrusel */
 .carrusel-texto {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-    padding: 35px 5%;
+    /* Degradado oscuro para que las letras blancas destaquen sobre cualquier imagen */
+    background: linear-gradient(to top, rgba(33, 21, 43, 0.9) 0%, rgba(33, 21, 43, 0.4) 60%, transparent 100%);
+    padding: 50px 5% 40px 5%;
     z-index: 3;
 }
 
 .carrusel-texto h2 {
-    font-size: 26px;
-    color: #ffffff;
-    margin-bottom: 5px;
+    font-size: 36px; /* Impacto real de titular */
+    font-weight: 800;
+    color: #ffffff; /* Blanco puro para legibilidad en fondo oscuro */
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .carrusel-texto p {
-    color: var(--bg-principal);
-    font-size: 16px;
+    color: var(--bg-principal); /* Usamos tu violeta clarito #f3eefc, contrasta de lujo en la oscuridad */
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    max-width: 600px;
 }
 
 /* Controles Circulares */
@@ -563,8 +628,8 @@ footer {
 
 .dot-wrapper {
     position: relative;
-    width: 10px;
-    height: 10px;
+    width: 25px;
+    height: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -575,7 +640,7 @@ footer {
     display: none;
     font-size: 13px;
     font-weight: bold;
-    color: var(--texto-secundario);
+    color: var(--texto-secundario); /* #4e3f5c */
     position: absolute;
     z-index: 2;
     transition: color 0.3s ease;
@@ -589,13 +654,13 @@ footer {
 
 .circulo-fondo {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.2);
+    stroke: rgba(255, 255, 255, 0.25); /* Sutil sobre la foto */
     stroke-width: 2.5;
 }
 
 .circulo-barra {
     fill: none;
-    stroke: var(--color-marca);
+    stroke: var(--color-marca-hover); /* Tu morado brillante #8a3ee6 para la carga activa */
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-dasharray: 100, 100;
@@ -614,7 +679,6 @@ footer {
     from {
         stroke-dashoffset: 100;
     }
-
     to {
         stroke-dashoffset: 0;
     }
@@ -630,16 +694,19 @@ footer {
 }
 
 .categoria-titulo {
-    font-size: 1.6rem;
-    color: var(--texto-principal);
-    margin-bottom: 20px;
+    font-size: 1.8rem; /* Aumentado de 1.6rem a 1.8rem para más presencia */
+    font-weight: 800;  /* Grosor extra en negrita para darle impacto */
+    color: var(--color-marca);
+    letter-spacing: -0.5px; /* Junta un pelín las letras, estilo titulares de revistas/marcas pro */
+    text-transform: uppercase; /* OPCIONAL: Pone el texto en mayúsculas. Si no te gusta, borra esta línea */
+    margin-bottom: 24px;
     border-bottom: 2px solid var(--color-marca);
-    padding-bottom: 8px;
+    padding-bottom: 10px;
 }
 
 .grid-productos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     align-items: start;
 }
@@ -650,6 +717,8 @@ footer {
     overflow: hidden;
     border: 1px solid var(--border-elemento);
     transition: transform 0.3s ease, border-color 0.3s ease;
+    width: 100%; 
+    box-sizing: border-box;
 }
 
 .producto-card:hover {
@@ -665,6 +734,7 @@ footer {
     cursor: pointer;
 }
 
+
 .producto-imagen-wrapper img {
     width: 100%;
     height: 100%;
@@ -672,8 +742,106 @@ footer {
     transition: transform 0.5s ease;
 }
 
+/* 1. El contenedor con altura fija y posición relativa */
+#cat-figuras .producto-imagen-wrapper {
+    width: 100%;
+    height: 520px;                 /* Altura ideal para la figura */
+    background-color:var(--border-sutil); /* Mantenemos el fondo transparente */
+    overflow: hidden;
+    position: relative;            /* Clave para que la foto se posicione respecto a esta caja */
+}
+
+/* 2. Ajuste, escalado y centrado absoluto de las imágenes de las figuras */
+#cat-figuras .foto-slide {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: 100%;                  /* Se adapta verticalmente por completo */
+    object-fit: contain;           /* No se recorta ni se deforma */
+    
+    /* TRUCO DE CENTRADO SEGURO (Ignora el display: block del JS) */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado matemático horizontal y vertical */
+    
+    display: none;                 /* Ocultas por defecto */
+}
+
+/* 3. Muestra la foto activa respetando el posicionamiento absoluto */
+#cat-figuras .foto-slide.activa {
+    display: block;                /* Tu JavaScript le pondrá esto y el truco anterior la centrará */
+}
+
 .producto-card:hover .producto-imagen-wrapper img {
     transform: scale(1.05);
+}
+
+/* ==========================================================================
+   MINI-CARRUSEL INTERNO PARA PRODUCTOS MULTI-FOTO
+   ========================================================================== */
+.galeria-fotos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 3. Las imágenes se quedan congeladas dentro de esos 220px y se adaptan sin empujar */
+.foto-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para que llene el espacio sin deformar */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out, transform 0.5s ease;
+}
+
+/* 4. Solo se muestra la que tenga la clase activa */
+.foto-slide.activa {
+    opacity: 1;
+}
+
+/* Mantenemos tu efecto de zoom original al hacer hover en la tarjeta */
+.producto-card:hover .foto-slide.activa {
+    transform: scale(1.05);
+}
+
+/* 5. Botones de dirección estilizados */
+.flecha-galeria {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(33, 21, 43, 0.75);
+    color: #ffffff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flecha-galeria:hover {
+    background-color: var(--color-marca);
+}
+
+.flecha-galeria.prev { left: 10px; }
+.flecha-galeria.next { right: 10px; }
+
+.producto-card:hover .flecha-galeria {
+    opacity: 1;
 }
 
 .indicador-click {
@@ -1036,6 +1204,28 @@ select option {
 .leaflet-routing-alt h3 {
     color: var(--color-marca-hover) !important;
 }
+
+/* ==========================================================================
+   ICONOS VECTORIALES (SUSTITUTOS DE EMOJIS)
+   ========================================================================== */
+.icono-svg-frikon {
+    width: 48px;         /* Tamaño perfecto para las tarjetas del index */
+    height: 48px;
+    fill: var(--color-marca-hover); /* Tu morado corporativo #6c25a3 */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ajuste específico para el pequeño pin de localización del footer */
+.icono-svg-frikon.inline-pin {
+    width: 20px;         /* Chiquitito para que vaya acorde al texto */
+    height: 20px;
+    display: inline-block;
+    vertical-align: sub; /* Lo alinea perfectamente a la altura de la letra */
+    margin-right: 4px;
+    fill: var(--texto-secundario); /* Gris/morado sutil a juego con el texto del footer */
+}
+
 
 /* ==========================================================================
    DISEÑO RESPONSIVE (PANTALLAS < 768px)

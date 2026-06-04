@@ -78,7 +78,7 @@ $(document).ready(function () {
         --- MÓDULO 3: DESPLEGABLE INFO PRODUCTOS CON JQUERY (GALERÍA) ---
        ========================================================================== */
 
-    // detecto el click en la imagen o en el texto resumen del producto
+    // 1. Detecto el click en la imagen o en el texto resumen del producto para el desplegable
     $('.producto-imagen-wrapper, .producto-resumen').on('click', function () {
         // busco la tarjeta (card) completa del producto en el que he pinchado
         const $tarjetaActual = $(this).closest('.producto-card');
@@ -94,6 +94,38 @@ $(document).ready(function () {
 
         // abro o cierro el desplegable del producto pinchado con efecto cortina
         $desplegableActual.slideToggle(300);
+    });
+
+    // 2. NUEVO: Lógica independiente para pasar las fotos internas con las flechas (ej. Luffy)
+    $('.flecha-galeria').on('click', function (e) {
+        // Evitamos que el click se propague hacia arriba abriendo/cerrando el desplegable por error
+        e.stopPropagation();
+
+        const $boton = $(this);
+        // Localizamos el wrapper específico de este producto
+        const $wrapper = $boton.closest('.producto-imagen-wrapper');
+        const $fotos = $wrapper.find('.foto-slide');
+        
+        // Averiguamos cuál es la foto que tiene la clase activa actualmente
+        let indiceActivo = $fotos.index($wrapper.find('.foto-slide.activa'));
+
+        // Calculamos el nuevo índice dependiendo de la flecha pulsada
+        if ($boton.hasClass('next')) {
+            indiceActivo++;
+            if (indiceActivo >= $fotos.length) indiceActivo = 0;
+        } else if ($boton.hasClass('prev')) {
+            indiceActivo--;
+            if (indiceActivo < 0) indiceActivo = $fotos.length - 1;
+        }
+
+        // Apagamos la foto activa actual y encendemos la nueva
+        $fotos.removeClass('activa').eq(indiceActivo).addClass('activa');
+    });
+
+    // 3. NUEVO: Evitamos que pulsar en "Reservar Producto" cierre la tarjeta al propagarse el click
+    $('.btn-reserva').on('click', function (e) {
+        e.stopPropagation();
+        alert('¡Reserva añadida con éxito! Nos pondremos en contacto contigo.');
     });
 
     /* ==========================================================================
