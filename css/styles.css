@@ -131,78 +131,153 @@ nav ul li a.activo::after {
 footer {
     background-color: var(--bg-tarjeta);
     border-top: 1px solid var(--border-sutil);
-    padding: 40px 5% 20px 5%;
-    margin-top: 50px;
+    padding: 60px 8% 30px 8%; /* Más aire arriba y abajo para que respire */
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 40px;
 }
 
-.footer-contenedor-superior {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.footer-info,
-.footer-redes {
-    flex: 1;
-}
-
-.footer-redes {
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-}
-
+/* Logo Superior Centrado */
 .footer-logo-central {
-    flex: 1;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .logo-grande-img {
-    height: 200px;
+    height: 140px; /* Reducido un pelín para que quede más elegante en la cabecera del footer */
     width: auto;
     display: block;
 }
 
-.footer-info p {
+/* Cuadrícula de Contenido (Se adapta de 4 columnas a 1 automáticamente) */
+.footer-grid-columnas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    width: 100%;
+}
+
+/* Estilos de cada columna */
+.footer-columna h3 {
+    color: var(--texto-principal);
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-columna p {
     color: var(--texto-secundario);
     font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-columna .direccion {
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* Listas de enlaces de navegación */
+.footer-columna ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-columna ul li {
+    margin-bottom: 12px;
+}
+
+.footer-columna ul li a {
+    color: var(--texto-secundario);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+/* Efecto interactivo sutil en los enlaces del texto */
+.footer-columna ul li a:hover {
+    color: var(--color-marca);
+    padding-left: 5px; /* Pequeño desplazamiento hacia la derecha muy pro */
+}
+
+/* Redes Sociales específicas */
+.redes-sociales-col p {
+    margin-bottom: 15px;
+}
+
+.footer-redes {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
 
 .footer-redes a {
-    color: var(--color-marca);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    transition: transform 0.2s, color 0.2s;
+    display: inline-block;
+    transition: transform 0.2s ease;
 }
 
+.icono-red-social {
+    width: 36px;  
+    height: 36px;
+    display: block;
+    fill: var(--texto-secundario);
+    transition: fill 0.2s ease;
+}
+
+/* Hovers de los iconos unificados */
 .footer-redes a:hover {
-    transform: scale(1.1);
-    color: var(--texto-principal);
+    transform: scale(1.12); 
 }
 
+.footer-redes a:hover .icono-red-social {
+    fill: var(--color-marca);
+}
+
+/* Barra Legal Inferior */
 .footer-legal {
     text-align: center;
     width: 100%;
     border-top: 1px solid var(--border-sutil);
-    padding-top: 15px;
+    padding-top: 25px;
+    color: var(--texto-mutado);
+    font-size: 13px;
 }
 
 .footer-legal a {
     color: var(--texto-mutado);
-    font-size: 12px;
     text-decoration: none;
+    margin-left: 10px;
+    transition: color 0.2s ease;
 }
 
 .footer-legal a:hover {
+    color: var(--color-marca);
     text-decoration: underline;
+}
+
+/* Adaptación Responsive para Móviles */
+@media screen and (max-width: 768px) {
+    footer {
+        padding: 40px 5% 20px 5%;
+        gap: 30px;
+        text-align: center; /* Centramos todo en el móvil para que quede equilibrado */
+    }
+
+    .footer-grid-columnas {
+        gap: 30px;
+    }
+
+    .footer-redes {
+        justify-content: center; /* Centra los iconos en las pantallas pequeñas */
+    }
+    
+    .footer-columna ul li a:hover {
+        padding-left: 0; /* Desactivamos el desplazamiento lateral en móvil */
+    }
 }
 
 /* ==========================================================================
