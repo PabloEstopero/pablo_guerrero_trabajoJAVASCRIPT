@@ -912,7 +912,7 @@ footer {
 }
 
 /* ==========================================================================
-   FORMULARIO DE PRESUPUESTO
+   FORMULARIO DE PRESUPUESTO 
    ========================================================================== */
 .main-presupuesto {
     padding: 40px 5%;
@@ -949,11 +949,16 @@ fieldset {
 }
 
 legend {
+    display: flex;
+    align-items: center;
     color: var(--texto-principal);
     font-weight: bold;
     padding: 0 10px;
     font-size: 1.1rem;
+    margin-bottom: 10px;
 }
+
+
 
 .campo-fila {
     display: flex;
@@ -965,17 +970,17 @@ legend {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .campo-input label {
     color: var(--texto-principal);
     font-size: 0.9rem;
     margin-bottom: 8px;
+    font-weight: bold;
 }
 
 .campo-input input,
-.campo-input select,
 .campo-input input[type="number"] {
     background-color: var(--bg-principal);
     border: 1px solid var(--border-foco);
@@ -988,7 +993,6 @@ legend {
 }
 
 .campo-input input:focus,
-.campo-input select:focus,
 .campo-input input[type="number"]:focus {
     border-color: var(--color-marca);
     outline: none;
@@ -1021,16 +1025,6 @@ input.invalido {
     font-size: 0.8rem;
     margin-top: 6px;
     margin-bottom: 5px;
-}
-
-select:invalid,
-select option[disabled] {
-    color: var(--texto-deshabilitado);
-}
-
-select option {
-    background-color: var(--bg-tarjeta);
-    color: var(--texto-principal);
 }
 
 .campo-checkbox {
@@ -1161,7 +1155,7 @@ select option {
     border-left: 4px solid var(--color-marca);
 }
 
-.tarjeta-dato h3 {
+.tarjeta-dato h2 {
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.1rem;
@@ -1224,6 +1218,13 @@ select option {
     vertical-align: sub; /* Lo alinea perfectamente a la altura de la letra */
     margin-right: 4px;
     fill: var(--texto-secundario); /* Gris/morado sutil a juego con el texto del footer */
+}
+.icono-fieldset {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+    color: var(--color-marca); /* Tu morado */
 }
 
 

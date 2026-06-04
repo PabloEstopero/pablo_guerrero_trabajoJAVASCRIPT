@@ -12,8 +12,8 @@
 
     <link rel="stylesheet" href="../css/styles.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -41,32 +41,59 @@
         <section class="seccion-contacto-layout">
 
             <div class="info-empresa-bloque">
-                <h1>📍 Dónde encontrarnos</h1>
+                <h1>
+                    <svg class="icono-fieldset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Dónde encontrarnos
+                </h1>
                 <p class="subtitulo-contacto">¿Tienes dudas con tu pedido o quieres ver las figuras en persona? ¡Pásate
                     por nuestra tienda!</p>
 
                 <div class="tarjeta-dato">
-                    <h3>🏢 Dirección Física</h3>
+                    <h2>
+                        <svg class="icono-fieldset" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Dirección Física
+                    </h2>
                     <p>Av. del Entretenimiento, Local 42</p>
                     <p>29010 - Málaga, España</p>
                 </div>
 
                 <div class="tarjeta-dato">
-                    <h3>📞 Teléfono y Correo</h3>
+                    <h2>
+                        <svg class="icono-fieldset" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        Teléfono y Correo
+                    </h2>
                     <p>+34 951 12 34 56</p>
                     <p>soporte@frikon.com</p>
                 </div>
 
                 <div class="tarjeta-dato">
-                    <h3>⏰ Horario Geek</h3>
+                    <h2>
+                        <svg class="icono-fieldset" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Horario Geek
+                    </h2>
                     <p>Lunes a Sábado: 10:00 - 14:00 y 17:00 - 21:00</p>
                     <p>Domingos: Cerrado por torneo de TCG</p>
                 </div>
 
                 <button id="btn-calcular-ruta" class="btn-presupuesto btn-enviar-presupuesto"
-                    style="margin-top: 15px; width: 100%;">
-                    🚀 Calcular Ruta desde mi Ubicación
-                </button>
+                    style="margin-top: 15px; width: 100%;"> Calcular Ruta desde mi Ubicación</button>
                 <p id="estado-gps" style="font-size: 0.85rem; color: #a2a2a2; margin-top: 8px; text-align: center;"></p>
             </div>
 
