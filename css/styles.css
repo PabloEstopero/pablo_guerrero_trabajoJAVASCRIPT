@@ -849,8 +849,8 @@ footer {
     bottom: -50px;
     left: 0;
     width: 100%;
-    background: rgba(108, 37, 163, 0.85);
-    color: #ffffff;
+    background: color-mix(in srgb, var(--color-marca) 60%, transparent 40%);;
+    color: var(--bg-tarjeta-desplegable);
     text-align: center;
     padding: 12px 0;
     font-size: 0.9rem;
@@ -1321,6 +1321,36 @@ select option {
         bottom: 15px;
         right: 15px;
         gap: 10px;
+    }
+
+    /* Ajuste del Grid de productos para móvil */
+    .grid-productos {
+        grid-template-columns: 1fr; /* Una sola columna para que las tarjetas ocupen el ancho total */
+        gap: 20px;
+    }
+
+    /* Reducción drástica de altura para figuras en móvil */
+    #cat-figuras .producto-imagen-wrapper {
+        height: 350px; /* Mucho más manejable para un dedo en pantalla vertical */
+    }
+
+    /* Aseguramos que los botones de galería sean más fáciles de tocar */
+    .flecha-galeria {
+        width: 45px;
+        height: 45px;
+        background: rgba(33, 21, 43, 0.5); /* Un poco más transparente */
+        opacity: 1; /* Los dejamos visibles siempre en móvil porque no hay hover */
+    }
+
+    /* Ajuste de títulos de categoría para que no se vean gigantes */
+    .categoria-titulo {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .indicador-click {
+        bottom: 0; /* Siempre visible */
+        background: color-mix(in srgb, var(--color-marca-hover) 60%, transparent 40%); /* Color sólido para que destaque */
     }
 
     .seccion-formulario {
