@@ -13,16 +13,23 @@ html {
 }
 
 :root {
+    /* Identidad Corporativa */
     --color-marca: #6c25a3;
     --color-marca-hover: #8a3ee6;
+
+    /* Capa de Fondos (Diseño Claro) */
     --bg-principal: #f3eefc;
     --bg-tarjeta: #ffffff;
     --bg-tarjeta-desplegable: #f9f6fe;
     --bg-bloque-informativo: #eaddf7;
+
+    /* Bordes y Separadores */
     --border-sutil: #dfcef0;
     --border-elemento: #cbb2e5;
     --border-foco: #a87ed1;
     --border-alerta: #e03131;
+
+    /* Capa de Texto */
     --texto-principal: #21152b;
     --texto-secundario: #4e3f5c;
     --texto-tarjeta: #5c4b6e;
@@ -124,12 +131,13 @@ nav ul li a.activo::after {
 footer {
     background-color: var(--bg-tarjeta);
     border-top: 1px solid var(--border-sutil);
-    padding: 60px 8% 30px 8%;
+    padding: 60px 8% 30px 8%; 
     margin-top: 70px;
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
+
 
 .footer-logo-central {
     display: flex;
@@ -138,11 +146,12 @@ footer {
 }
 
 .logo-grande-img {
-    height: 140px;
+    height: 140px; 
     width: auto;
     display: block;
 }
 
+/* Cuadrícula de Contenido (Se adapta de 4 columnas a 1 automáticamente) */
 .footer-grid-columnas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -150,6 +159,7 @@ footer {
     width: 100%;
 }
 
+/* Estilos de cada columna */
 .footer-columna h3 {
     color: var(--texto-principal);
     font-size: 16px;
@@ -170,6 +180,7 @@ footer {
     font-weight: 500;
 }
 
+/* Listas de enlaces de navegación */
 .footer-columna ul {
     list-style: none;
     padding: 0;
@@ -187,11 +198,13 @@ footer {
     transition: color 0.2s ease, padding-left 0.2s ease;
 }
 
+/* Efecto interactivo sutil en los enlaces del texto */
 .footer-columna ul li a:hover {
     color: var(--color-marca);
-    padding-left: 5px;
+    padding-left: 5px; 
 }
 
+/* Redes Sociales específicas */
 .redes-sociales-col p {
     margin-bottom: 15px;
 }
@@ -224,6 +237,7 @@ footer {
     fill: var(--color-marca);
 }
 
+/* Barra Legal Inferior */
 .footer-legal {
     text-align: center;
     width: 100%;
@@ -245,26 +259,6 @@ footer {
     text-decoration: underline;
 }
 
-/* Adaptación Responsive para Móviles */
-@media screen and (max-width: 768px) {
-    footer {
-        padding: 40px 5% 20px 5%;
-        gap: 30px;
-        text-align: center;
-    }
-
-    .footer-grid-columnas {
-        gap: 30px;
-    }
-
-    .footer-redes {
-        justify-content: center;
-    }
-
-    .footer-columna ul li a:hover {
-        padding-left: 0;
-    }
-}
 
 /* ==========================================================================
    PORTADA - SECCIONES GENERALES
@@ -467,59 +461,63 @@ footer {
    CARRUSEL GALERÍA - EN PANTALLA COMPLETA Y CON COLORES CORPORATIVOS
    ========================================================================== */
 
-   .titulo-principal-galeria {
-    font-size: 36px;
-    font-weight: 800;
+   /* Títulos Principales de la Galería*/
+.titulo-principal-galeria {
+    font-size: 36px;             
+    font-weight: 800;            
     color: var(--texto-principal);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    text-transform: uppercase;   
+    letter-spacing: 2px;        
     text-align: center;
-    margin: 70px auto 40px auto;
+    margin: 70px auto 40px auto; 
     position: relative;
-    padding-bottom: 16px;
-    width: fit-content;
+    padding-bottom: 16px;       
+    width: fit-content;         
 }
 
+/*  línea fina en el centro */
 .titulo-principal-galeria::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background-color: var(--color-marca);
-    border-radius: 2px;
+    width: 80px;                 
+    height: 4px;                
+    background-color: var(--color-marca); 
+    border-radius: 2px;          
 }
+
 
 #novedades-carrusel {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: calc(100vh - 80px);
-    margin-bottom: 80px;
+    height: calc(100vh - 80px); 
+    margin-bottom: 80px; 
 }
 
 .titulo-seleccion {
-    font-size: 34px;
-    font-weight: 800;
+    font-size: 34px;            
+    font-weight: 800;            
     color: var(--texto-principal);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    text-transform: uppercase;   
+    letter-spacing: 2px;        
     text-align: center;
-    margin: 60px auto 30px auto;
+    margin: 60px auto 30px auto; 
     position: relative;
-    padding-bottom: 16px;
-    width: fit-content;
+    padding-bottom: 16px;        
+    width: fit-content;         
 }
 
+/* barrita morada centrada */
 .titulo-seleccion::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 250px;
+    width: 250px;                 
     height: 4px;
     background-color: var(--color-marca);
     border-radius: 2px;
@@ -527,15 +525,15 @@ footer {
 
 .carrusel-contenedor {
     position: relative;
-    width: 85%;
+    width: 85%; 
     max-width: 1400px;
-    height: calc(90vh - 180px);
+    height: calc(90vh - 180px); 
     min-height: 450px;
     margin: 0 auto;
     border-radius: 12px;
     overflow: hidden;
-    border: 2px solid var(--border-sutil);
-    background-color: var(--bg-tarjeta);
+    border: 2px solid var(--border-sutil); 
+    background-color: var(--bg-tarjeta); 
 }
 
 .carrusel-slides {
@@ -567,7 +565,7 @@ footer {
     object-position: center;
 }
 
-/* Enunciados y textos pro sobre el carrusel */
+/* Enunciados y textos sobre el carrusel */
 .carrusel-texto {
     position: absolute;
     bottom: 0;
@@ -581,7 +579,7 @@ footer {
 .carrusel-texto h2 {
     font-size: 36px;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--bg-principal); 
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: -0.5px;
@@ -589,13 +587,14 @@ footer {
 }
 
 .carrusel-texto p {
-    color: var(--bg-principal);
+    color: var(--bg-principal); 
     font-size: 18px;
     font-weight: 300;
     letter-spacing: 0.5px;
     max-width: 600px;
 }
 
+/* Controles Circulares */
 .carrusel-dots {
     position: absolute;
     bottom: 25px;
@@ -619,7 +618,7 @@ footer {
     display: none;
     font-size: 13px;
     font-weight: bold;
-    color: var(--texto-secundario);
+    color: var(--texto-secundario); 
     position: absolute;
     z-index: 2;
     transition: color 0.3s ease;
@@ -633,13 +632,13 @@ footer {
 
 .circulo-fondo {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.25);
+    stroke: rgba(255, 255, 255, 0.25); 
     stroke-width: 2.5;
 }
 
 .circulo-barra {
     fill: none;
-    stroke: var(--color-marca-hover);
+    stroke: var(--color-marca-hover); 
     stroke-width: 2.5;
     stroke-linecap: round;
     stroke-dasharray: 100, 100;
@@ -673,11 +672,21 @@ footer {
 }
 
 .categoria-titulo {
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 1.8rem; 
+    font-weight: 800; 
     color: var(--color-marca);
-    letter-spacing: -0.5px;
-    text-transform: uppercase;
+    letter-spacing: -0.5px; 
+    text-transform: uppercase; 
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--color-marca);
+    padding-bottom: 10px;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: start;
 }
 
 .producto-card {
@@ -711,29 +720,30 @@ footer {
     transition: transform 0.5s ease;
 }
 
+/*Figuras carrusel*/
 #cat-figuras .producto-imagen-wrapper {
     width: 100%;
-    height: 520px;
-    background-color: var(--border-sutil);
+    height: 520px;                
+    background-color:var(--border-sutil); 
     overflow: hidden;
-    position: relative;
+    position: relative;            
 }
 
 #cat-figuras .foto-slide {
     max-width: 100%;
     max-height: 100%;
     width: auto;
-    height: 100%;
-    object-fit: contain;
+    height: 100%;                 
+    object-fit: contain;          
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
+    transform: translate(-50%, -50%); 
+    display: none;                
 }
 
 #cat-figuras .foto-slide.activa {
-    display: block;
+    display: block;              
 }
 
 .producto-card:hover .producto-imagen-wrapper img {
@@ -758,7 +768,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; 
     opacity: 0;
     transition: opacity 0.4s ease-in-out, transform 0.5s ease;
 }
@@ -770,6 +780,7 @@ footer {
 .producto-card:hover .foto-slide.activa {
     transform: scale(1.05);
 }
+
 
 .flecha-galeria {
     position: absolute;
@@ -808,7 +819,7 @@ footer {
     bottom: -50px;
     left: 0;
     width: 100%;
-    background: rgba(108, 37, 163, 0.6);
+    background: color-mix(in srgb, var(--color-marca) 60%, transparent 40%);;
     color: var(--bg-tarjeta-desplegable);
     text-align: center;
     padding: 12px 0;
@@ -980,7 +991,7 @@ input.invalido {
 }
 
 .ayuda-input {
-    color: var(--texto-mutado);
+    color: var(--texto-mutated);
     font-size: 0.8rem;
     margin-top: 6px;
     margin-bottom: 5px;
@@ -1159,74 +1170,32 @@ input.invalido {
 }
 
 /* ==========================================================================
-   ICONOS VECTORIALES 
+   ICONOS VECTORIALES (SUSTITUTOS DE EMOJIS)
    ========================================================================== */
 .icono-svg-frikon {
-    width: 48px;
+    width: 48px;       
     height: 48px;
-    fill: var(--color-marca-hover);
+    fill: var(--color-marca-hover); 
     display: block;
     margin: 0 auto;
 }
 
+/*  pequeño pin de localización del footer */
 .icono-svg-frikon.inline-pin {
-    width: 20px;
+    width: 20px;         
     height: 20px;
     display: inline-block;
-    vertical-align: sub;
+    vertical-align: sub; 
     margin-right: 4px;
-    fill: var(--texto-secundario);
+    fill: var(--texto-secundario); 
 }
 .icono-fieldset {
     width: 20px;
     height: 20px;
     vertical-align: middle;
     margin-right: 8px;
-    color: var(--color-marca);
-
-/* ==========================================================================
-   TOAST/NOTIFICACIONES (NO-BLOCKING)
-   ========================================================================== */
-.toast-container {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 2000;
+    color: var(--color-marca); 
 }
-
-.toast {
-    min-width: 220px;
-    max-width: 360px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    color: #fff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    font-weight: 600;
-    font-size: 0.95rem;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.toast.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.toast.success { background-color: #2ecc71; }
-.toast.error { background-color: #e74c3c; }
-.toast.info { background-color: #3498db; }
-.toast .detalle {
-    font-weight: 400;
-    font-size: 0.85rem;
-    margin-top: 6px;
-    opacity: 0.95;
-}
-
-
 
 
 /* ==========================================================================
@@ -1242,6 +1211,24 @@ input.invalido {
 
     body {
         padding-top: 110px;
+    }
+
+    footer {
+        padding: 40px 5% 20px 5%;
+        gap: 30px;
+        text-align: center; 
+    }
+
+    .footer-grid-columnas {
+        gap: 30px;
+    }
+
+    .footer-redes {
+        justify-content: center; 
+    }
+    
+    .footer-columna ul li a:hover {
+        padding-left: 0; 
     }
 
     nav ul {
@@ -1325,20 +1312,22 @@ input.invalido {
         gap: 10px;
     }
 
+   
     .grid-productos {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 
+    
     #cat-figuras .producto-imagen-wrapper {
-        height: 350px;
+        height: 350px; 
     }
 
     .flecha-galeria {
         width: 45px;
         height: 45px;
         background: rgba(33, 21, 43, 0.5);
-        opacity: 1;
+        opacity: 1; 
     }
 
     .categoria-titulo {
@@ -1347,8 +1336,8 @@ input.invalido {
     }
 
     .indicador-click {
-        bottom: 0;
-        background: color-mix(in srgb, var(--color-marca-hover) 60%, transparent 40%);
+        bottom: 0; 
+        background: color-mix(in srgb, var(--color-marca-hover) 60%, transparent 40%); 
     }
 
     .seccion-formulario {
@@ -1394,10 +1383,12 @@ input.invalido {
 
     .mapa-contenedor-bloque {
         min-height: 400px;
+       
         height: 400px;
         width: 100%;
         position: relative;
         z-index: 10;
+       
     }
 
     #mapa-frikon {
