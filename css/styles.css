@@ -1138,10 +1138,19 @@ input.invalido {
     color: var(--texto-principal);
 }
 
-.tarjeta-dato p {
+.tarjeta-dato p,a {
     margin: 4px 0;
     color: var(--texto-tarjeta);
     font-size: 0.9rem;
+}
+.link-contacto {
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.link-contacto:hover {
+    color: var(--color-marca-hover);
+    text-decoration: underline;
 }
 
 .mapa-contenedor-bloque {
