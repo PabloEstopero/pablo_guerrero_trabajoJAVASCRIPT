@@ -279,6 +279,32 @@ footer {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+.titulo-seleccion {
+    font-size: 34px;            
+    font-weight: 800;            
+    color: var(--texto-principal);
+    text-transform: uppercase;   
+    letter-spacing: 2px;        
+    text-align: center;
+    margin: 60px auto 30px auto; 
+    position: relative;
+    padding-bottom: 16px;        
+    width: fit-content;         
+}
+
+/* barrita morada centrada */
+.titulo-seleccion::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;                 
+    height: 4px;
+    background-color: var(--color-marca);
+    border-radius: 2px;
+}
+
 
 /* Hero Principal */
 #hero-inicio {
@@ -373,6 +399,10 @@ footer {
 }
 
 /* Bloque de Ventajas */
+#ventajas-frikon{
+    background-color: var(--border-foco);
+}
+
 .grid-ventajas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -497,31 +527,7 @@ footer {
     margin-bottom: 80px; 
 }
 
-.titulo-seleccion {
-    font-size: 34px;            
-    font-weight: 800;            
-    color: var(--texto-principal);
-    text-transform: uppercase;   
-    letter-spacing: 2px;        
-    text-align: center;
-    margin: 60px auto 30px auto; 
-    position: relative;
-    padding-bottom: 16px;        
-    width: fit-content;         
-}
 
-/* barrita morada centrada */
-.titulo-seleccion::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 250px;                 
-    height: 4px;
-    background-color: var(--color-marca);
-    border-radius: 2px;
-}
 
 .carrusel-contenedor {
     position: relative;
