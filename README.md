@@ -1,4 +1,6 @@
---                ----- TRABAJO FINAL HTML Y CSS -----                  --
+----- TRABAJO FINAL JAVASCRIPT AVANZADO ----- 
+
+
 Dirección del repositorio de GitHub
 URL: https://github.com/PabloEstopero/pablo_guerrero_trabajoJAVASCRIPT
 
