@@ -352,7 +352,7 @@ $(document).ready(function () {
    ========================================================================== */
 function cargarNoticiasEfectoAjax() {
     $.ajax({
-        url: 'noticias.json',
+        url: '../data/noticias.json',
         type: 'GET',
         dataType: 'json',
         success: function (noticiasRecibidas) {
