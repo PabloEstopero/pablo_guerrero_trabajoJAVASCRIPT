@@ -1,22 +1,40 @@
-/*
-    js/main.js
-    Lógica principal de FriKon:
-    - Portada: noticias AJAX
-    - Galería: carrusel y catálogo interactivo
-    - Presupuesto: cálculo y validación
-    - Contacto: mapa y geolocalización
-*/
+/**
+ * =============================================================================
+ * ARCHIVO: js/main.js
+ * 
+ * DESCRIPCIÓN:
+ * Lógica interactiva principal del sitio web FriKon. Incluye 6 módulos:
+ * 
+ * 1. MÓDULO NOTICIAS: Carga dinámicamente noticias desde JSON vía AJAX
+ * 2. MÓDULO CARRUSEL: Navegación automática y manual de slides en galería
+ * 3. MÓDULO PRODUCTOS: Desplegable interactivo de productos con mini-galerías
+ * 4. MÓDULO VALIDACIÓN: Validaciones de formulario en tiempo real
+ * 5. MÓDULO CÁLCULO: Presupuesto dinámico sin refresh de página
+ * 6. MÓDULO MAPA: Integración con Leaflet, geolocalización y rutas
+ * 
+ * DEPENDENCIAS:
+ * - jQuery 3.7.1
+ * - Leaflet.js 1.9.4 (para mapas)
+ * - Leaflet Routing Machine 3.2.12 (para cálculo de rutas)
+ * 
+ * AUTOR: Pablo Guerrero
+ * FECHA: 2026-06-05
+ * =============================================================================
+ */
 
 $(document).ready(function () {
     /* ==========================================================================
-    MÓDULO 1: DETECCIÓN DE PORTADA (AJAX NOTICIAS)
+       MÓDULO 1: DETECCIÓN DE PORTADA Y CARGA AJAX DE NOTICIAS
+       Verifica si el contenedor de noticias existe y carga datos del JSON
    ========================================================================== */
     if ($('#contenedor-noticias-ajax').length > 0) {
         cargarNoticiasEfectoAjax();
     }
 
     /* ==========================================================================
-       MÓDULO 2: CARRUSEL
+       MÓDULO 2: CARRUSEL DE NOVEDADES
+       Sistema de navegación automática (cada 5 segundos) y manual (clicks en dots)
+       Animación suave con transiciones CSS y manejo de índices rotativos
        ========================================================================== */
 
     const $slides = $('.slide');
@@ -55,7 +73,9 @@ $(document).ready(function () {
     });
 
     /* ==========================================================================
-       MÓDULO 3: DESPLEGABLE DE PRODUCTOS
+       MÓDULO 3: DESPLEGABLE INTERACTIVO DE PRODUCTOS
+       Click en imagen o resumen expande/contrae detalles del producto
+       Incluye mini-galería con navegación prev/next entre fotos
        ========================================================================== */
 
     $('.producto-imagen-wrapper, .producto-resumen').on('click', function () {
@@ -228,13 +248,19 @@ $(document).ready(function () {
                 }
 
                 setTimeout(function () {
-                    $('html, body').stop().animate({
+                    $('html, body').stop(true, true).animate({
                         scrollTop: $elementoDestino.offset().top - distanciaMargen
                     }, 800, 'swing', function () {
                         if ($primerInvalido.attr('id') === 'contenedor-check-productos') {
-                            $('.check-producto').first().focus();
+                            var primerCheck = $('.check-producto').first()[0];
+                            if (primerCheck && typeof primerCheck.focus === 'function') {
+                                primerCheck.focus({ preventScroll: true });
+                            }
                         } else {
-                            $primerInvalido.focus();
+                            var elementoFocus = $primerInvalido[0];
+                            if (elementoFocus && typeof elementoFocus.focus === 'function') {
+                                elementoFocus.focus({ preventScroll: true });
+                            }
                         }
                     });
                 }, 150);

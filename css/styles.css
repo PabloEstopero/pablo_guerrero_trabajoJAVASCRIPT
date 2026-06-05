@@ -56,10 +56,17 @@ header {
     background-color: var(--bg-tarjeta);
     border-bottom: 2px solid var(--color-marca);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0 5%;
     z-index: 1000;
+}
+
+header nav {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .logo {
@@ -69,13 +76,13 @@ header {
 }
 
 .logo-img {
-    height: 45px;
+    height: 3.5rem;
     width: auto;
     display: block;
 }
 
 .logo-texto {
-    font-size: 35px;
+    font-size: 3.5rem;
     color: var(--color-marca);
     font-weight: bold;
     letter-spacing: 1px;
@@ -259,9 +266,10 @@ footer {
     text-decoration: underline;
 }
 
-
 /* ==========================================================================
    PORTADA - SECCIONES GENERALES
+   Estilos principales para la página de inicio, incluyendo hero, categorías,
+   ventajas y sección de noticias AJAX. Utiliza CSS Grid responsive.
    ========================================================================== */
 .main-portada {
     padding: 0;
@@ -398,7 +406,8 @@ footer {
     background: rgba(108, 37, 163, 0.2);
 }
 
-/* Bloque de Ventajas */
+/* Bloque de Ventajas / Propuesta de Valor
+   Contenedor con fondo diferenciado para destacar 3 ventajas principales */
 #ventajas-frikon{
     background-color: var(--border-foco);
 }
@@ -422,7 +431,8 @@ footer {
     margin-bottom: 15px;
 }
 
-/* Ajax Noticias */
+/* Sección de Noticias Cargadas vía AJAX
+   Grid responsive que se adapta automáticamente a diferentes tamaños de pantalla */
 .grid-noticias {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -600,7 +610,9 @@ footer {
     max-width: 600px;
 }
 
-/* Controles Circulares */
+/* Controles Circulares del Carrusel
+   Sistema de indicadores con animación circular y números
+   Posicionados en la esquina inferior derecha del carrusel */
 .carrusel-dots {
     position: absolute;
     bottom: 25px;
@@ -630,6 +642,8 @@ footer {
     transition: color 0.3s ease;
 }
 
+/* Círculo de Progreso SVG
+   Animación suave de llenado mientras el slide está activo */
 .progreso-circular {
     width: 100%;
     height: 100%;
@@ -974,6 +988,8 @@ legend {
     outline: none;
 }
 
+/* Mensaje de Error Dinámico
+   Se muestra cuando la validación JavaScript detecta un campo inválido */
 .error-mensaje {
     color: var(--border-alerta);
     font-size: 0.8rem;
@@ -981,10 +997,14 @@ legend {
     display: none;
 }
 
+/* Clase Aplicada por JavaScript para Marcar Campos Inválidos
+   Cambia el borde rojo cuando la validación falla */
 input.invalido {
     border-color: var(--border-alerta) !important;
 }
 
+/* Screen Reader Only Text
+   Para mejorar accesibilidad, ocultado visualmente pero accesible para lectores de pantalla */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -1224,6 +1244,13 @@ input.invalido {
         gap: 10px;
     }
 
+    header nav {
+        position: static;
+        right: auto;
+        top: auto;
+        transform: none;
+    }
+
     body {
         padding-top: 110px;
     }
@@ -1412,5 +1439,79 @@ input.invalido {
         position: absolute;
         top: 0;
         left: 0;
+    }
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVE ADICIONAL (PANTALLAS < 480px)
+   Optimizaciones para móviles pequeños (iPhone 5, dispositivos antiguos)
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+    body {
+        padding-top: 130px;
+    }
+
+    header {
+        padding: 10px 3%;
+    }
+
+    nav ul li a {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+
+    .titulo-seleccion {
+        font-size: 24px;
+        letter-spacing: 0px;
+        margin: 40px auto 20px auto;
+    }
+
+    .bloque-acceso {
+        height: 140px;
+    }
+
+    .bloque-acceso h3 {
+        font-size: 0.95rem;
+    }
+
+    .grid-noticias {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .noticia-card {
+        padding: 15px;
+    }
+
+    .grid-ventajas {
+        gap: 15px;
+    }
+
+    .ventaja-card {
+        padding: 15px;
+    }
+
+    footer {
+        padding: 25px 3% 15px 3%;
+        gap: 20px;
+    }
+
+    .footer-columna h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .footer-columna p,
+    .footer-columna ul li a {
+        font-size: 12px;
+    }
+
+    .icono-red-social {
+        width: 28px;
+        height: 28px;
+    }
+
+    .logo-grande-img {
+        height: 100px;
     }
 }
